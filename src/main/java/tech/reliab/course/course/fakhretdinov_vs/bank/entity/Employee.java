@@ -1,13 +1,14 @@
 package tech.reliab.course.course.fakhretdinov_vs.bank.entity;
 
-public class Employee {
-    public int id;
+import java.util.Date;
+
+public class Employee extends Identificator {
     public String fullName;
-    public long birthDateTimestamp;
+    public Date birthDate;
     public String position;
     public Bank bank;
     public boolean workingInOffice;
     public BankOffice bankOffice;
     public int creditCanBeIssued;
-    public int salary;
+    public Currency salary;
 }

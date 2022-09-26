@@ -1,8 +1,7 @@
 package tech.reliab.course.course.fakhretdinov_vs.bank.entity;
 
-public class PaymentAccount {
-    public int id;
+public class PaymentAccount extends Identificator {
     public User user;
     public Bank bankName;
-    public int amountOfMoney;
+    public Currency amountOfMoney;
 }

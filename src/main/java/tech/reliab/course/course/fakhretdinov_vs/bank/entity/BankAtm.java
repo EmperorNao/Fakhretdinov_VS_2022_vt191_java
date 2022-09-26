@@ -1,15 +1,16 @@
 package tech.reliab.course.course.fakhretdinov_vs.bank.entity;
 
-public class BankAtm {
-    public int id;
+import tech.reliab.course.course.fakhretdinov_vs.bank.entity.enums.BankAtmStatus;
+
+public class BankAtm extends Identificator {
     public String name;
     public String address;
     public BankAtmStatus status;
     public Bank bank;
-    //public РАСПОЛОЖЕНИЕ
+    // public расположение #TODO -> что значит расположение, если в сущности уже есть адрес
     public Employee serviceEmployee;
     public boolean isPaymentingMoney;
     public boolean isDepositingMoney;
-    public int numberOfMoney;
-    public int maintenancePrice;
+    public Currency numberOfMoney;
+    public Currency maintenancePrice;
 }

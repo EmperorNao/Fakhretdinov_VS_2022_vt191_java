@@ -1,14 +1,15 @@
 package tech.reliab.course.course.fakhretdinov_vs.bank.entity;
 
-public class CreditAccount {
-    public int id;
+import java.util.Date;
+
+public class CreditAccount extends Identificator {
     public User user;
     public String bankName;
-    public long creditStartTimestamp;
-    public long creditEndTimestamp;
+    public Date creditStart;
+    public Date creditEnd;
     public int numberOfMonths;
-    public int amountOfMoney;
-    public int monthlyPayment;
+    public Currency amountOfMoney;
+    public Currency monthlyPayment;
     public int interestRate;
     public Employee creditEmployee;
     public PaymentAccount paymentAccount;

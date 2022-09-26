@@ -1,7 +1,6 @@
 package tech.reliab.course.course.fakhretdinov_vs.bank.entity;
 
-public class BankOffice {
-    public int id;
+public class BankOffice extends Identificator {
     public String name;
     public String address;
     public boolean status;
@@ -10,6 +9,6 @@ public class BankOffice {
     public int creditCanBeIssued;
     public boolean isPaymentingMoney;
     public boolean isDepositingMoney;
-    public int numberOfMoney;
-    public int rentPrice;
+    public Currency numberOfMoney;
+    public Currency rentPrice;
 }
