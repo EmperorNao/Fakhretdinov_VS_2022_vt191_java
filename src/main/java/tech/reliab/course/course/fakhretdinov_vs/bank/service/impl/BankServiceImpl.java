@@ -8,13 +8,13 @@ public class BankServiceImpl implements BankService {
 
     private static Long currentMaxId = 0L;
     private static Random randomGenerator = new Random();
+    private Bank bank;
 
-    Bank bank;
 
     /**
      *
-     * @param name - тестируем русские комментарии
-     * @return
+     * @param name - имя банка
+     * @return возвращает созданный объект банк
      */
     @Override
     public Bank create(String name) {
@@ -33,23 +33,38 @@ public class BankServiceImpl implements BankService {
                 money,
                 rate
         );
-
         return bank;
 
     }
 
+    /**
+     *
+     * @return возвращает объект банка
+     */
     @Override
     public Bank read() {
         return bank;
     }
 
+    /**
+     *
+     * @param bank - новый банк
+     */
     @Override
     public void update(Bank bank) {
-        bank = bank;
+        this.bank = bank;
     }
 
+    /**
+     *
+     * @param bank - банк для удаления
+     */
     @Override
     public void delete(Bank bank) {
-
+        if (this.bank == bank) {
+            this.bank = null;
+        }
     }
+
+
 }
