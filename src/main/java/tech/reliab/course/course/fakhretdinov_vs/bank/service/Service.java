@@ -14,6 +14,6 @@ public interface Service<T extends Identifier> {
     public T get(Long id);
     public void update(T model);
     public void delete(T model);
-    public ArrayList<T> grep(Function<T, Boolean> func)
+    public ArrayList<T> grep(Function<T, Boolean> func);
 
 }
