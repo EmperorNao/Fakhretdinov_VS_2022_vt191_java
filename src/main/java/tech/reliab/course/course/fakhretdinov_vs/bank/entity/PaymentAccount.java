@@ -1,14 +1,15 @@
 package tech.reliab.course.course.fakhretdinov_vs.bank.entity;
 
-public class PaymentAccount {
+import tech.reliab.course.course.fakhretdinov_vs.bank.entity.core.Identifier;
 
-    private Long id;
+public class PaymentAccount extends Identifier {
+
     private User user;
     private String bankName;
     private long amountOfMoney;
 
     public PaymentAccount(Long id, User user, String bankName, Long amountOfMoney) {
-        this.id = id;
+        super(id);
         this.user = user;
         this.bankName = bankName;
         this.amountOfMoney = amountOfMoney;
@@ -17,19 +18,11 @@ public class PaymentAccount {
     @Override
     public String toString() {
         return "PaymentAccount{" +
-                "id=" + id +
+                "id=" + this.getId() +
                 ", user=" + user +
                 ", bankName='" + bankName + '\'' +
                 ", amountOfMoney=" + amountOfMoney +
                 '}';
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public User getUser() {

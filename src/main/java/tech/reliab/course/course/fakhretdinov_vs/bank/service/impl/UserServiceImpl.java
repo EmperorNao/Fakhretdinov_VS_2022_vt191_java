@@ -28,6 +28,7 @@ public class UserServiceImpl implements UserService {
 
         Long salary = randomGenerator.nextLong(1000);
         user = new User(
+                ++currentMaxId,
                 fullName,
                 birthdate,
                 placeOfWork,

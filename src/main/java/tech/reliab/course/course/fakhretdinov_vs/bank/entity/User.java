@@ -1,8 +1,10 @@
 package tech.reliab.course.course.fakhretdinov_vs.bank.entity;
 
+import tech.reliab.course.course.fakhretdinov_vs.bank.entity.core.Identifier;
+
 import java.util.Date;
 
-public class User {
+public class User extends Identifier {
 
     private String fullName;
     private Date birthDate;
@@ -13,7 +15,8 @@ public class User {
     private PaymentAccount paymentAccount;
     private Integer creditRating;
 
-    public User(String fullName,
+    public User(Long id,
+                String fullName,
                 Date birthDate,
                 String placeOfWork,
                 Long monthlySalary,
@@ -21,6 +24,7 @@ public class User {
                 CreditAccount creditAccount,
                 PaymentAccount paymentAccount,
                 Integer creditRating) {
+        super(id);
         this.fullName = fullName;
         this.birthDate = birthDate;
         this.placeOfWork = placeOfWork;
@@ -34,6 +38,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
+                "id=" + this.getId() +
                 "fullName=" + fullName +
                 ", birthDate='" + birthDate + '\'' +
                 ", placeOfWork=" + placeOfWork +

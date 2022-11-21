@@ -1,10 +1,11 @@
 package tech.reliab.course.course.fakhretdinov_vs.bank.entity;
 
+import tech.reliab.course.course.fakhretdinov_vs.bank.entity.core.Identifier;
+
 import java.util.Date;
 
-public class CreditAccount {
+public class CreditAccount extends Identifier {
 
-    private Long id;
     private User user;
     private String bankName;
     private Date creditStart;
@@ -28,7 +29,7 @@ public class CreditAccount {
                          Integer interestRate,
                          Employee creditEmployee,
                          PaymentAccount paymentAccount) {
-        this.id = id;
+        super(id);
         this.user = user;
         this.bankName = bankName;
         this.creditStart = creditStart;
@@ -44,7 +45,7 @@ public class CreditAccount {
     @Override
     public String toString() {
         return "CreditAccount{" +
-                "id=" + id +
+                "id=" + this.getId() +
                 ", user=" + user +
                 ", bankName='" + bankName + '\'' +
                 ", creditStart=" + creditStart +
@@ -56,14 +57,6 @@ public class CreditAccount {
                 ", creditEmployee=" + creditEmployee +
                 ", paymentAccount=" + paymentAccount +
                 '}';
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public User getUser() {

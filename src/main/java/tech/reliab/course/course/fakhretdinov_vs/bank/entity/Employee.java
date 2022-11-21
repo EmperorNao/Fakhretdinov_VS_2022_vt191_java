@@ -1,10 +1,11 @@
 package tech.reliab.course.course.fakhretdinov_vs.bank.entity;
 
+import tech.reliab.course.course.fakhretdinov_vs.bank.entity.core.Identifier;
+
 import java.util.Date;
 
-public class Employee {
+public class Employee extends Identifier {
 
-    private Long id;
     private Bank bank;
     private String fullName;
     private Date birthDate;
@@ -23,7 +24,7 @@ public class Employee {
                     BankOffice bankOffice,
                     Boolean creditCanBeIssued,
                     Long salary) {
-        this.id = id;
+        super(id);
         this.bank = bank;
         this.fullName = fullName;
         this.birthDate = birthDate;
@@ -37,7 +38,7 @@ public class Employee {
     @Override
     public String toString() {
         return "Employee{" +
-                "id=" + id +
+                "id=" + this.getId() +
                 ", bank='" + bank + '\'' +
                 ", fullName=" + fullName +
                 ", birthDate='" + birthDate + '\'' +
@@ -47,14 +48,6 @@ public class Employee {
                 ", creditCanBeIssued=" + creditCanBeIssued +
                 ", salary=" + salary +
                 '}';
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Bank getBank() {

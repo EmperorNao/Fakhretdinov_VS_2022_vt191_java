@@ -1,10 +1,10 @@
 package tech.reliab.course.course.fakhretdinov_vs.bank.entity;
 
+import tech.reliab.course.course.fakhretdinov_vs.bank.entity.core.Identifier;
 import tech.reliab.course.course.fakhretdinov_vs.bank.entity.enums.BankAtmStatus;
 
-public class BankAtm {
+public class BankAtm extends Identifier {
 
-    private Long id;
     private Bank bank;
     private String name;
     private String address;
@@ -25,7 +25,7 @@ public class BankAtm {
                    Boolean isDepositingMoney,
                    Long numberOfMoney,
                    Integer maintenancePrice) {
-        this.id = id;
+        super(id);
         this.bank = bank;
         this.name = name;
         this.address = address;
@@ -40,7 +40,7 @@ public class BankAtm {
     @Override
     public String toString() {
         return "BankAtm{" +
-                "id=" + id +
+                "id=" + this.getId() +
                 ", bank='" + bank + '\'' +
                 ", name=" + name +
                 ", address=" + address +
@@ -51,14 +51,6 @@ public class BankAtm {
                 ", numberOfMoney=" + numberOfMoney +
                 ", maintenancePrice=" + maintenancePrice +
                 '}';
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Bank getBank() {

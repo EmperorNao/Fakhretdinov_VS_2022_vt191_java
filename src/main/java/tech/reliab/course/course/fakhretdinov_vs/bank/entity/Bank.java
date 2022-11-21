@@ -1,7 +1,8 @@
 package tech.reliab.course.course.fakhretdinov_vs.bank.entity;
 
-public class Bank {
-    private Long id;
+import tech.reliab.course.course.fakhretdinov_vs.bank.entity.core.Identifier;
+
+public class Bank extends Identifier {
     private String name;
     private Integer numberOfOffices;
     private Integer numberOfAtms;
@@ -20,7 +21,7 @@ public class Bank {
                 Integer bankRating,
                 Long amountOfMoney,
                 Integer interestRate) {
-        this.id = id;
+        super(id);
         this.name = name;
         this.numberOfOffices = numberOfOffices;
         this.numberOfAtms = numberOfAtms;
@@ -34,7 +35,7 @@ public class Bank {
     @Override
     public String toString() {
         return "Bank{" +
-                "id=" + id +
+                "id=" + this.getId() +
                 ", name='" + name + '\'' +
                 ", numberOfOffices=" + numberOfOffices +
                 ", numberOfAtms=" + numberOfAtms +
@@ -44,14 +45,6 @@ public class Bank {
                 ", amountOfMoney=" + amountOfMoney +
                 ", interestRate=" + interestRate +
                 '}';
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {

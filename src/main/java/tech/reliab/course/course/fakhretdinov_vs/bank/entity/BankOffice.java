@@ -1,8 +1,9 @@
 package tech.reliab.course.course.fakhretdinov_vs.bank.entity;
 
-public class BankOffice {
+import tech.reliab.course.course.fakhretdinov_vs.bank.entity.core.Identifier;
 
-    private Long id;
+public class BankOffice extends Identifier {
+
     private Bank bank;
     private String name;
     private String address;
@@ -28,7 +29,7 @@ public class BankOffice {
                       Boolean isDepositingMoney,
                       Long numberOfMoney,
                       Long rentPrice) {
-        this.id = id;
+        super(id);
         this.bank = bank;
         this.name = name;
         this.address = address;
@@ -45,7 +46,7 @@ public class BankOffice {
     @Override
     public String toString() {
         return "BankOffice{" +
-                "id=" + id +
+                "id=" + this.getId() +
                 ", bank=" + bank +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
@@ -58,14 +59,6 @@ public class BankOffice {
                 ", numberOfMoney=" + numberOfMoney +
                 ", rentPrice=" + rentPrice +
                 '}';
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Bank getBank() {
