@@ -4,6 +4,7 @@ import tech.reliab.course.course.fakhretdinov_vs.bank.entity.*;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.BankService;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.PaymentAccountService;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceContainer;
+import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceManager;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.impl.core.ServiceContainerImpl;
 
 import java.util.ArrayList;
@@ -16,8 +17,14 @@ public class PaymentAccountServiceImpl implements PaymentAccountService {
     private static Random randomGenerator = new Random();
     private PaymentAccount paymentAccount;
     ServiceContainer<PaymentAccount> container;
+    ServiceManager manager;
+
     public PaymentAccountServiceImpl() {
         container = new ServiceContainerImpl<PaymentAccount>();
+    }
+
+    public void setServiceManager(ServiceManager manager) {
+        this.manager = manager;
     }
 
     @Override

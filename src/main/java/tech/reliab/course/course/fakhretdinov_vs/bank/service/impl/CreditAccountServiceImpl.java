@@ -3,6 +3,7 @@ package tech.reliab.course.course.fakhretdinov_vs.bank.service.impl;
 import tech.reliab.course.course.fakhretdinov_vs.bank.entity.*;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.CreditAccountService;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceContainer;
+import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceManager;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.impl.core.ServiceContainerImpl;
 
 import java.time.Period;
@@ -19,8 +20,14 @@ public class CreditAccountServiceImpl implements CreditAccountService {
     private static Random randomGenerator = new Random();
     private CreditAccount creditAccount;
     ServiceContainer<CreditAccount> container;
+    ServiceManager manager;
+
     public CreditAccountServiceImpl() {
         container = new ServiceContainerImpl<CreditAccount>();
+    }
+
+    public void setServiceManager(ServiceManager manager) {
+        this.manager = manager;
     }
 
     @Override

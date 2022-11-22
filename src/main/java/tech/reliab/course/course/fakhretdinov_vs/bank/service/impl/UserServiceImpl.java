@@ -7,6 +7,7 @@ import tech.reliab.course.course.fakhretdinov_vs.bank.entity.User;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.BankService;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.UserService;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceContainer;
+import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceManager;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.impl.core.ServiceContainerImpl;
 
 import java.util.ArrayList;
@@ -20,10 +21,10 @@ public class UserServiceImpl implements UserService {
     private static Random randomGenerator = new Random();
     private User user;
     ServiceContainer<User> container;
+    ServiceManager manager;
     public UserServiceImpl() {
         container = new ServiceContainerImpl<User>();
     }
-
     @Override
     public User create(String fullName, Date birthdate, String placeOfWork, Bank bank) {
 
@@ -40,6 +41,10 @@ public class UserServiceImpl implements UserService {
                 Math.toIntExact(salary / 10)
         );
         return user;
+    }
+
+    public void setServiceManager(ServiceManager manager) {
+        this.manager = manager;
     }
 
     @Override

@@ -11,5 +11,6 @@ public interface Service<T extends Identifier> {
     ArrayList<T> read();
     void update(T obj);
     void delete(T obj);
+    public void setServiceManager(ServiceManager manager);
 
 }

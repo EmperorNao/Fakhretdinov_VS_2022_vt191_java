@@ -5,6 +5,7 @@ import tech.reliab.course.course.fakhretdinov_vs.bank.entity.BankAtm;
 import tech.reliab.course.course.fakhretdinov_vs.bank.entity.BankOffice;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.BankService;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceContainer;
+import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceManager;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.impl.core.ServiceContainerImpl;
 
 import java.util.ArrayList;
@@ -16,16 +17,16 @@ public class BankServiceImpl implements BankService {
     private static Long currentMaxId = 0L;
     private static Random randomGenerator = new Random();
     ServiceContainer<Bank> container;
+    ServiceManager manager;
+
     public BankServiceImpl() {
         container = new ServiceContainerImpl<Bank>();
     }
 
+    public void setServiceManager(ServiceManager manager) {
+        this.manager = manager;
+    }
 
-    /**
-     *
-     * @param name - имя банка
-     * @return возвращает созданный объект банк
-     */
     @Override
     public Bank create(String name) {
 

@@ -21,6 +21,14 @@ public class ServiceManager {
         this.creditAccountService = creditAccountService;
         this.paymentAccountService = paymentAccountService;
 
+        this.bankService.setServiceManager(this);
+        this.bankAtmService.setServiceManager(this);
+        this.bankOfficeService.setServiceManager(this);
+        this.employeeService.setServiceManager(this);
+        this.userService.setServiceManager(this);
+        this.creditAccountService.setServiceManager(this);
+        this.paymentAccountService.setServiceManager(this);
+
     }
 
     public static BankService bankService;
