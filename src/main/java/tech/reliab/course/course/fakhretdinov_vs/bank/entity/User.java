@@ -40,7 +40,7 @@ public class User extends Identifier {
     public String toString() {
         return "User{" +
                 "id=" + getId() +
-                "fullName=" + fullName +
+                ", fullName=" + fullName +
                 ", birthDate='" + birthDate + '\'' +
                 ", placeOfWork=" + placeOfWork +
                 ", monthlySalary='" + monthlySalary + '\'' +

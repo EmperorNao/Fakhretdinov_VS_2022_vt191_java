@@ -61,13 +61,13 @@ public class Main {
                 employee,
                 paymentAccount);
 
-        System.out.println(bank);
-        System.out.println(bankOffice);
-        System.out.println(employee);
-        System.out.println(atm);
-        System.out.println(user);
-        System.out.println(creditAccount);
-        System.out.println(paymentAccount);
+        System.out.println("Bank: " + bank);
+        System.out.println("BankOffice: " + bankOffice);
+        System.out.println("Employee: " + employee);
+        System.out.println("BankAtm: " + atm);
+        System.out.println("User: " + user);
+        System.out.println("CreditAccount: " + creditAccount);
+        System.out.println("PaymentAccount: " + paymentAccount);
 
     }
 

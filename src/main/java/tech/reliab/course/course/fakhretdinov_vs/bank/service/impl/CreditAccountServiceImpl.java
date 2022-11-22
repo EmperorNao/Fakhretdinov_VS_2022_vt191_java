@@ -57,9 +57,13 @@ public class CreditAccountServiceImpl implements CreditAccountService {
                 creditEmployee,
                 paymentAccount
         );
+        container.update(creditAccount);
 
-        // внести в юзера
-        // внести в банк
+        if (manager.bankService.isClient(bank, user)) {
+            bank.setNumberOfClients(bank.getNumberOfClients());
+            manager.bankService.update(bank);
+        }
+
         return creditAccount;
 
     }
