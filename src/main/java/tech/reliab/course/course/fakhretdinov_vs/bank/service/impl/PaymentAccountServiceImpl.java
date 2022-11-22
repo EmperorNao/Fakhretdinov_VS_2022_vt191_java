@@ -31,17 +31,17 @@ public class PaymentAccountServiceImpl implements PaymentAccountService {
     public PaymentAccount create(User user, Bank bank) {
         paymentAccount = new PaymentAccount(
                 ++currentMaxId,
-                user,
+                user.getId(),
                 bank.getName(),
                 0L
         );
-        container.update(paymentAccount);
 
-        if (manager.bankService.isClient(bank, user)) {
-            bank.setNumberOfClients(bank.getNumberOfClients());
+        if (!manager.bankService.isClient(bank, user)) {
+            bank.setNumberOfClients(bank.getNumberOfClients() + 1);
             manager.bankService.update(bank);
         }
 
+        container.update(paymentAccount);
         return paymentAccount;
     }
 

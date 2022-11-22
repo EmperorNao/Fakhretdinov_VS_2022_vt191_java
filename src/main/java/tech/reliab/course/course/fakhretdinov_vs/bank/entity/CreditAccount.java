@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class CreditAccount extends Identifier {
 
-    private User user;
+    private Long userId;
     private String bankName;
     private Date creditStart;
     private Date creditEnd;
@@ -14,12 +14,12 @@ public class CreditAccount extends Identifier {
     private Long amountOfMoney;
     private Long monthlyPayment;
     private Integer interestRate;
-    private Employee creditEmployee;
-    private PaymentAccount paymentAccount;
+    private Long creditEmployeeId;
+    private Long paymentAccountId;
 
 
     public CreditAccount(Long id,
-                         User user,
+                         Long user,
                          String bankName,
                          Date creditStart,
                          Date creditEnd,
@@ -27,10 +27,10 @@ public class CreditAccount extends Identifier {
                          Long amountOfMoney,
                          Long monthlyPayment,
                          Integer interestRate,
-                         Employee creditEmployee,
-                         PaymentAccount paymentAccount) {
+                         Long creditEmployee,
+                         Long paymentAccount) {
         super(id);
-        this.user = user;
+        this.userId = user;
         this.bankName = bankName;
         this.creditStart = creditStart;
         this.creditEnd = creditEnd;
@@ -38,15 +38,15 @@ public class CreditAccount extends Identifier {
         this.amountOfMoney = amountOfMoney;
         this.monthlyPayment = monthlyPayment;
         this.interestRate = interestRate;
-        this.creditEmployee = creditEmployee;
-        this.paymentAccount = paymentAccount;
+        this.creditEmployeeId = creditEmployee;
+        this.paymentAccountId = paymentAccount;
     }
 
     @Override
     public String toString() {
         return "CreditAccount{" +
                 "id=" + getId() +
-                ", user=" + user +
+                ", userId=" + userId +
                 ", bankName='" + bankName + '\'' +
                 ", creditStart=" + creditStart +
                 ", creditEnd=" + creditEnd +
@@ -54,17 +54,17 @@ public class CreditAccount extends Identifier {
                 ", amountOfMoney=" + amountOfMoney +
                 ", monthlyPayment=" + monthlyPayment +
                 ", interestRate=" + interestRate +
-                ", creditEmployee=" + creditEmployee +
-                ", paymentAccount=" + paymentAccount +
+                ", creditEmployeeId=" + creditEmployeeId +
+                ", paymentAccountId=" + paymentAccountId +
                 '}';
     }
 
-    public User getUser() {
-        return user;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getBankName() {
@@ -123,20 +123,20 @@ public class CreditAccount extends Identifier {
         this.interestRate = interestRate;
     }
 
-    public Employee getCreditEmployee() {
-        return creditEmployee;
+    public Long getCreditEmployeeId() {
+        return creditEmployeeId;
     }
 
-    public void setCreditEmployee(Employee creditEmployee) {
-        this.creditEmployee = creditEmployee;
+    public void setCreditEmployeeId(Long creditEmployeeId) {
+        this.creditEmployeeId = creditEmployeeId;
     }
 
-    public PaymentAccount getPaymentAccount() {
-        return paymentAccount;
+    public Long getPaymentAccountId() {
+        return paymentAccountId;
     }
 
-    public void setPaymentAccount(PaymentAccount paymentAccount) {
-        this.paymentAccount = paymentAccount;
+    public void setPaymentAccountId(Long paymentAccount) {
+        this.paymentAccountId = paymentAccountId;
     }
 
 }

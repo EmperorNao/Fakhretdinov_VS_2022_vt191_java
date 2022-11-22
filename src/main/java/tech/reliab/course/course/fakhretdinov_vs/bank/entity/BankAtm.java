@@ -5,32 +5,33 @@ import tech.reliab.course.course.fakhretdinov_vs.bank.entity.enums.BankAtmStatus
 
 public class BankAtm extends Identifier {
 
-    private Bank bank;
+    private Long bankId;
     private String name;
     private String address;
     private BankAtmStatus status;
-    private Employee serviceEmployee;
+
+    private Long serviceEmployeeId;
     private Boolean isPaymentingMoney;
     private Boolean isDepositingMoney;
     private Long numberOfMoney;
     private Integer maintenancePrice;
 
     public BankAtm(Long id,
-                   Bank bank,
+                   Long bankId,
                    String name,
                    String address,
                    BankAtmStatus status,
-                   Employee serviceEmployee,
+                   Long serviceEmployeeId,
                    Boolean isPaymentingMoney,
                    Boolean isDepositingMoney,
                    Long numberOfMoney,
                    Integer maintenancePrice) {
         super(id);
-        this.bank = bank;
+        this.bankId = bankId;
         this.name = name;
         this.address = address;
         this.status = status;
-        this.serviceEmployee = serviceEmployee;
+        this.serviceEmployeeId = serviceEmployeeId;
         this.isPaymentingMoney = isPaymentingMoney;
         this.isDepositingMoney = isDepositingMoney;
         this.numberOfMoney = numberOfMoney;
@@ -41,11 +42,11 @@ public class BankAtm extends Identifier {
     public String toString() {
         return "BankAtm{" +
                 "id=" + getId() +
-                ", bank='" + bank + '\'' +
+                ", bankId='" + bankId + '\'' +
                 ", name=" + name +
                 ", address=" + address +
                 ", status='" + status + '\'' +
-                ", serviceEmployee=" + serviceEmployee +
+                ", serviceEmployeeId=" + serviceEmployeeId +
                 ", isPaymentingMoney=" + isPaymentingMoney +
                 ", isDepositingMoney=" + isDepositingMoney +
                 ", numberOfMoney=" + numberOfMoney +
@@ -53,12 +54,12 @@ public class BankAtm extends Identifier {
                 '}';
     }
 
-    public Bank getBank() {
-        return bank;
+    public Long getBankId() {
+        return bankId;
     }
 
-    public void setBank(Bank bank) {
-        this.bank = bank;
+    public void setBankId(Long bankId) {
+        this.bankId = bankId;
     }
 
     public String getName() {
@@ -85,12 +86,12 @@ public class BankAtm extends Identifier {
         this.status = status;
     }
 
-    public Employee getServiceEmployee() {
-        return serviceEmployee;
+    public Long getServiceEmployeeId() {
+        return serviceEmployeeId;
     }
 
-    public void setServiceEmployee(Employee serviceEmployee) {
-        this.serviceEmployee = serviceEmployee;
+    public void setServiceEmployeeId(Long serviceEmployeeId) {
+        this.serviceEmployeeId = serviceEmployeeId;
     }
 
     public Boolean getPaymentingMoney() {

@@ -34,7 +34,7 @@ public class BankOfficeServiceImpl implements BankOfficeService {
 
         BankOffice bankOffice = new BankOffice(
                 ++currentMaxId,
-                bank,
+                bank.getId(),
                 name,
                 address,
                 randomGenerator.nextBoolean(),

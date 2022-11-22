@@ -39,7 +39,7 @@ public class BankServiceImpl implements BankService {
                 0,
                 0,
                 0,
-                randomGenerator.nextInt(100),
+                0,
                 rating,
                 money,
                 rate
@@ -83,13 +83,13 @@ public class BankServiceImpl implements BankService {
         HashSet<User> users = new HashSet<User>();
 
         for (PaymentAccount acc: payment_accounts) {
-            if (acc.getUser().getId().equals(user.getId())) {
+            if (acc.getUserId().equals(user.getId())) {
                 return Boolean.TRUE;
             }
         }
 
         for (CreditAccount acc: credit_accounts) {
-            if (acc.getUser().getId().equals(user.getId())) {
+            if (acc.getUserId().equals(user.getId())) {
                 return Boolean.TRUE;
             }
         }

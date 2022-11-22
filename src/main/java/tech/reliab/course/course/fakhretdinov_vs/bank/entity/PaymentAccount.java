@@ -4,13 +4,13 @@ import tech.reliab.course.course.fakhretdinov_vs.bank.entity.core.Identifier;
 
 public class PaymentAccount extends Identifier {
 
-    private User user;
+    private Long userId;
     private String bankName;
     private long amountOfMoney;
 
-    public PaymentAccount(Long id, User user, String bankName, Long amountOfMoney) {
+    public PaymentAccount(Long id, Long userId, String bankName, Long amountOfMoney) {
         super(id);
-        this.user = user;
+        this.userId = userId;
         this.bankName = bankName;
         this.amountOfMoney = amountOfMoney;
     }
@@ -19,18 +19,18 @@ public class PaymentAccount extends Identifier {
     public String toString() {
         return "PaymentAccount{" +
                 "id=" + getId() +
-                ", user=" + user +
+                ", userId=" + userId +
                 ", bankName='" + bankName + '\'' +
                 ", amountOfMoney=" + amountOfMoney +
                 '}';
     }
 
-    public User getUser() {
-        return user;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getBankName() {

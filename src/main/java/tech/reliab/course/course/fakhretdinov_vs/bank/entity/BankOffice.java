@@ -4,7 +4,7 @@ import tech.reliab.course.course.fakhretdinov_vs.bank.entity.core.Identifier;
 
 public class BankOffice extends Identifier {
 
-    private Bank bank;
+    private Long bankId;
     private String name;
     private String address;
     private Boolean status;
@@ -18,7 +18,7 @@ public class BankOffice extends Identifier {
 
 
     public BankOffice(Long id,
-                      Bank bank,
+                      Long bankId,
                       String name,
                       String address,
                       Boolean status,
@@ -30,7 +30,7 @@ public class BankOffice extends Identifier {
                       Long numberOfMoney,
                       Long rentPrice) {
         super(id);
-        this.bank = bank;
+        this.bankId = bankId;
         this.name = name;
         this.address = address;
         this.status = status;
@@ -47,7 +47,7 @@ public class BankOffice extends Identifier {
     public String toString() {
         return "BankOffice{" +
                 "id=" + getId() +
-                ", bank=" + bank +
+                ", bankId=" + bankId +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", status=" + status +
@@ -61,12 +61,12 @@ public class BankOffice extends Identifier {
                 '}';
     }
 
-    public Bank getBank() {
-        return bank;
+    public Long getBankId() {
+        return bankId;
     }
 
-    public void setBank(Bank id) {
-        this.bank = bank;
+    public void setBankId(Long bankId) {
+        this.bankId = bankId;
     }
 
     public String getName() {

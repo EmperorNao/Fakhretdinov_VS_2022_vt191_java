@@ -6,31 +6,31 @@ import java.util.Date;
 
 public class Employee extends Identifier {
 
-    private Bank bank;
+    private Long bankId;
     private String fullName;
     private Date birthDate;
     private String position;
     private Boolean workingInOffice;
-    private BankOffice bankOffice;
+    private Long bankOfficeId;
     private Boolean creditCanBeIssued;
     private Long salary;
 
     public Employee(Long id,
-                    Bank bank,
+                    Long bank,
                     String fullName,
                     Date birthDate,
                     String position,
                     Boolean workingInOffice,
-                    BankOffice bankOffice,
+                    Long bankOffice,
                     Boolean creditCanBeIssued,
                     Long salary) {
         super(id);
-        this.bank = bank;
+        this.bankId = bankId;
         this.fullName = fullName;
         this.birthDate = birthDate;
         this.position = position;
         this.workingInOffice = workingInOffice;
-        this.bankOffice = bankOffice;
+        this.bankOfficeId = bankOfficeId;
         this.creditCanBeIssued = creditCanBeIssued;
         this.salary = salary;
     }
@@ -39,23 +39,23 @@ public class Employee extends Identifier {
     public String toString() {
         return "Employee{" +
                 "id=" + getId() +
-                ", bank='" + bank + '\'' +
+                ", bankId='" + bankId + '\'' +
                 ", fullName=" + fullName +
                 ", birthDate='" + birthDate + '\'' +
                 ", position=" + position +
                 ", workingInOffice=" + workingInOffice +
-                ", bankOffice=" + bankOffice +
+                ", bankOfficeId=" + bankOfficeId +
                 ", creditCanBeIssued=" + creditCanBeIssued +
                 ", salary=" + salary +
                 '}';
     }
 
-    public Bank getBank() {
-        return bank;
+    public Long getBankId() {
+        return bankId;
     }
 
-    public void setBank(Bank bank) {
-        this.bank = bank;
+    public void setBankId(Long bank) {
+        this.bankId = bankId;
     }
 
     public String getFullName() {
@@ -90,12 +90,12 @@ public class Employee extends Identifier {
         this.workingInOffice = workingInOffice;
     }
 
-    public BankOffice getBankOffice() {
-        return bankOffice;
+    public Long getBankOfficeId() {
+        return bankOfficeId;
     }
 
-    public void setBankOffice(BankOffice bankOffice) {
-        this.bankOffice = bankOffice;
+    public void setBankOfficeId(Long bankOfficeId) {
+        this.bankOfficeId = bankOfficeId;
     }
 
     public Boolean getCreditCanBeIssued() {

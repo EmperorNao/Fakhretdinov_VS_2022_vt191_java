@@ -32,12 +32,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         employee = new Employee (
                 ++currentMaxId,
-                bank,
+                bank.getId(),
                 fullName,
                 birthDate,
                 position,
                 randomGenerator.nextBoolean(),
-                office,
+                office.getId(),
                 randomGenerator.nextBoolean(),
                 salary
         );

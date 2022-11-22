@@ -43,7 +43,7 @@ public class CreditAccountServiceImpl implements CreditAccountService {
 
         creditAccount = new CreditAccount(
                 ++currentMaxId,
-                user,
+                user.getId(),
                 bank.getName(),
                 creditStart,
                 creditEnd,
@@ -54,16 +54,16 @@ public class CreditAccountServiceImpl implements CreditAccountService {
                 amountOfMoney,
                 monthlyPayment,
                 bank.getInterestRate(),
-                creditEmployee,
-                paymentAccount
+                creditEmployee.getId(),
+                paymentAccount.getId()
         );
-        container.update(creditAccount);
 
-        if (manager.bankService.isClient(bank, user)) {
-            bank.setNumberOfClients(bank.getNumberOfClients());
+        if (!manager.bankService.isClient(bank, user)) {
+            bank.setNumberOfClients(bank.getNumberOfClients() + 1);
             manager.bankService.update(bank);
         }
 
+        container.update(creditAccount);
         return creditAccount;
 
     }

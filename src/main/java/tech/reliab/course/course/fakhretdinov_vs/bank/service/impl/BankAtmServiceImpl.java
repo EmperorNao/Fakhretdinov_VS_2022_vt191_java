@@ -41,11 +41,11 @@ public class BankAtmServiceImpl implements BankAtmService  {
 
         BankAtm bankAtm = new BankAtm(
                 ++currentMaxId,
-                bank,
+                bank.getId(),
                 name,
                 office.getAddress(),
                 BankAtmStatus.getRandomStatus(randomGenerator.nextInt(3)),
-                employee,
+                employee.getId(),
                 randomGenerator.nextBoolean(),
                 randomGenerator.nextBoolean(),
                 bank.getAmountOfMoney(),
