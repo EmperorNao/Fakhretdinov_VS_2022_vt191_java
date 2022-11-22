@@ -45,7 +45,7 @@ public class CreditAccount extends Identifier {
     @Override
     public String toString() {
         return "CreditAccount{" +
-                "id=" + this.getId() +
+                "id=" + getId() +
                 ", user=" + user +
                 ", bankName='" + bankName + '\'' +
                 ", creditStart=" + creditStart +

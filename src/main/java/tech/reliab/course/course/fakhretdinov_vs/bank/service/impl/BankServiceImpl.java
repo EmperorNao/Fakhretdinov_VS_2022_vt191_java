@@ -1,15 +1,15 @@
 package tech.reliab.course.course.fakhretdinov_vs.bank.service.impl;
 
-import tech.reliab.course.course.fakhretdinov_vs.bank.entity.Bank;
-import tech.reliab.course.course.fakhretdinov_vs.bank.entity.BankAtm;
-import tech.reliab.course.course.fakhretdinov_vs.bank.entity.BankOffice;
+import tech.reliab.course.course.fakhretdinov_vs.bank.entity.*;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.BankService;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceContainer;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceManager;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.impl.core.ServiceContainerImpl;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 import java.util.function.Function;
 
 public class BankServiceImpl implements BankService {
@@ -44,6 +44,8 @@ public class BankServiceImpl implements BankService {
                 money,
                 rate
         );
+        container.update(bank);
+
         return bank;
 
     }
@@ -62,6 +64,38 @@ public class BankServiceImpl implements BankService {
     @Override
     public void delete(Bank obj) {
         container.delete(obj);
+    }
+
+    @Override
+    public ArrayList<Bank> grep(Function<Bank, Boolean> func) {
+        return container.grep(func);
+    }
+
+    @Override
+    public Boolean isClient(Bank bank, User user) {
+
+        Function<PaymentAccount, Boolean> check_payment_acc = acc -> acc.getBankName().equals(bank.getName());
+        Function<CreditAccount, Boolean> check_credit_acc = acc -> acc.getBankName().equals(bank.getName());
+
+        ArrayList<PaymentAccount> payment_accounts = manager.paymentAccountService.grep(check_payment_acc);
+        ArrayList<CreditAccount> credit_accounts = manager.creditAccountService.grep(check_credit_acc);
+
+        HashSet<User> users = new HashSet<User>();
+
+        for (PaymentAccount acc: payment_accounts) {
+            if (acc.getUser().getId().equals(user.getId())) {
+                return Boolean.TRUE;
+            }
+        }
+
+        for (CreditAccount acc: credit_accounts) {
+            if (acc.getUser().getId().equals(user.getId())) {
+                return Boolean.TRUE;
+            }
+        }
+
+        return Boolean.FALSE;
+
     }
 
 

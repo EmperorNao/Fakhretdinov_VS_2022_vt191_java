@@ -8,6 +8,9 @@ import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.Service;
 import java.util.Date;
 
 public interface UserService extends Service<User> {
-    User create(String fullName, Date birthdate, String placeOfWork, Bank bank);
+    User create(String fullName,
+                Date birthdate,
+                String placeOfWork);
+
 
 }

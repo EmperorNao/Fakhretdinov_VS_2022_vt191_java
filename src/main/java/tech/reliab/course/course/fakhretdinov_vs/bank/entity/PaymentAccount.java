@@ -18,7 +18,7 @@ public class PaymentAccount extends Identifier {
     @Override
     public String toString() {
         return "PaymentAccount{" +
-                "id=" + this.getId() +
+                "id=" + getId() +
                 ", user=" + user +
                 ", bankName='" + bankName + '\'' +
                 ", amountOfMoney=" + amountOfMoney +

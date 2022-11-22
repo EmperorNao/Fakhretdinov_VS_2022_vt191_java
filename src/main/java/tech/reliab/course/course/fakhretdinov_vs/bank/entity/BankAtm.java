@@ -40,7 +40,7 @@ public class BankAtm extends Identifier {
     @Override
     public String toString() {
         return "BankAtm{" +
-                "id=" + this.getId() +
+                "id=" + getId() +
                 ", bank='" + bank + '\'' +
                 ", name=" + name +
                 ", address=" + address +

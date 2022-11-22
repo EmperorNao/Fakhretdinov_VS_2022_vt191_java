@@ -57,6 +57,9 @@ public class CreditAccountServiceImpl implements CreditAccountService {
                 creditEmployee,
                 paymentAccount
         );
+
+        // внести в юзера
+        // внести в банк
         return creditAccount;
 
     }
@@ -75,6 +78,10 @@ public class CreditAccountServiceImpl implements CreditAccountService {
     @Override
     public void delete(CreditAccount obj) {
         container.delete(obj);
+    }
+
+    public ArrayList<CreditAccount> grep(Function<CreditAccount, Boolean> func) {
+        return container.grep(func);
     }
 
 

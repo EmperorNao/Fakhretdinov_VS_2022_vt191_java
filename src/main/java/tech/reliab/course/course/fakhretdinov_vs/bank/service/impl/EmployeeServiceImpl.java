@@ -29,6 +29,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee create(String fullName, String position, Bank bank, Date birthDate, BankOffice office, Long salary) {
+
         employee = new Employee (
                 ++currentMaxId,
                 bank,
@@ -40,6 +41,11 @@ public class EmployeeServiceImpl implements EmployeeService {
                 randomGenerator.nextBoolean(),
                 salary
         );
+        container.update(employee);
+
+        bank.setNumberOfEmployes(bank.getNumberOfEmployes() + 1);
+        manager.bankService.update(bank);
+
 
         return employee;
     }
@@ -59,6 +65,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void delete(Employee obj) {
         container.delete(obj);
     }
+
+    public ArrayList<Employee> grep(Function<Employee, Boolean> func) {
+        return container.grep(func);
+    }
+
 
 
 }

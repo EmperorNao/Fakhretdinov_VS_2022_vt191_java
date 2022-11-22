@@ -46,7 +46,7 @@ public class BankOffice extends Identifier {
     @Override
     public String toString() {
         return "BankOffice{" +
-                "id=" + this.getId() +
+                "id=" + getId() +
                 ", bank=" + bank +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +

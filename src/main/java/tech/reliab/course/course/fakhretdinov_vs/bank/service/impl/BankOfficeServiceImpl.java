@@ -39,13 +39,18 @@ public class BankOfficeServiceImpl implements BankOfficeService {
                 address,
                 randomGenerator.nextBoolean(),
                 randomGenerator.nextBoolean(),
-                bank.getNumberOfAtms(),
+                0,
                 randomGenerator.nextBoolean(),
                 randomGenerator.nextBoolean(),
                 randomGenerator.nextBoolean(),
                 bank.getAmountOfMoney(),
                 rentPrice
         );
+        container.update(bankOffice);
+
+        bank.setNumberOfOffices(bank.getNumberOfOffices() + 1);
+        manager.bankService.update(bank);
+
         return bankOffice;
 
     }
@@ -66,6 +71,10 @@ public class BankOfficeServiceImpl implements BankOfficeService {
         container.delete(obj);
     }
 
+    @Override
+    public ArrayList<BankOffice> grep(Function<BankOffice, Boolean> func) {
+        return container.grep(func);
+    }
 
 
 }

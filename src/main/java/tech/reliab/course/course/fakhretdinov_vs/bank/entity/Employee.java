@@ -38,7 +38,7 @@ public class Employee extends Identifier {
     @Override
     public String toString() {
         return "Employee{" +
-                "id=" + this.getId() +
+                "id=" + getId() +
                 ", bank='" + bank + '\'' +
                 ", fullName=" + fullName +
                 ", birthDate='" + birthDate + '\'' +

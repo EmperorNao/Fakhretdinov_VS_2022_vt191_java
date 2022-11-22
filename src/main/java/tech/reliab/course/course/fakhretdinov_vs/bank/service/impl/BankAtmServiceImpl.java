@@ -34,6 +34,11 @@ public class BankAtmServiceImpl implements BankAtmService  {
     @Override
     public BankAtm create(String name, Bank bank, BankOffice office, Employee employee) {
 
+        if (!office.getAtmCanBePlaced()) {
+            return null;
+            //TODO throw exception
+        }
+
         BankAtm bankAtm = new BankAtm(
                 ++currentMaxId,
                 bank,
@@ -47,6 +52,13 @@ public class BankAtmServiceImpl implements BankAtmService  {
                 randomGenerator.nextInt(6666)
         );
         container.update(bankAtm);
+
+        bank.setNumberOfAtms(bank.getNumberOfAtms() + 1);
+        manager.bankService.update(bank);
+
+        office.setNumberOfAtms(office.getNumberOfAtms() + 1);
+        manager.bankOfficeService.update(office);
+
         return bankAtm;
 
     }
@@ -65,6 +77,11 @@ public class BankAtmServiceImpl implements BankAtmService  {
     @Override
     public void delete(BankAtm obj) {
         container.delete(obj);
+    }
+
+    @Override
+    public ArrayList<BankAtm> grep(Function<BankAtm, Boolean> func) {
+        return container.grep(func);
     }
 
 }

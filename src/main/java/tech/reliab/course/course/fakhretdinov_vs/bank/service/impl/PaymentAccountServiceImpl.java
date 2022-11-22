@@ -35,6 +35,12 @@ public class PaymentAccountServiceImpl implements PaymentAccountService {
                 bank.getName(),
                 0L
         );
+        container.update(paymentAccount);
+
+        if (manager.bankService.isClient(bank, user)) {
+            bank.setNumberOfClients(bank.getNumberOfClients());
+            manager.bankService.update(bank);
+        }
 
         return paymentAccount;
     }
@@ -53,6 +59,10 @@ public class PaymentAccountServiceImpl implements PaymentAccountService {
     @Override
     public void delete(PaymentAccount obj) {
         container.delete(obj);
+    }
+
+    public ArrayList<PaymentAccount> grep(Function<PaymentAccount, Boolean> func) {
+        return container.grep(func);
     }
 
 

@@ -35,7 +35,7 @@ public class Bank extends Identifier {
     @Override
     public String toString() {
         return "Bank{" +
-                "id=" + this.getId() +
+                "id=" + getId() +
                 ", name='" + name + '\'' +
                 ", numberOfOffices=" + numberOfOffices +
                 ", numberOfAtms=" + numberOfAtms +

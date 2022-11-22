@@ -2,6 +2,7 @@ package tech.reliab.course.course.fakhretdinov_vs.bank.entity;
 
 import tech.reliab.course.course.fakhretdinov_vs.bank.entity.core.Identifier;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class User extends Identifier {
@@ -10,9 +11,9 @@ public class User extends Identifier {
     private Date birthDate;
     private String placeOfWork;
     private Long monthlySalary;
-    private Bank bank;
-    private CreditAccount creditAccount;
-    private PaymentAccount paymentAccount;
+    private ArrayList<Bank> banks;
+    private ArrayList<CreditAccount> creditAccounts;
+    private ArrayList<PaymentAccount> paymentAccounts;
     private Integer creditRating;
 
     public User(Long id,
@@ -20,32 +21,32 @@ public class User extends Identifier {
                 Date birthDate,
                 String placeOfWork,
                 Long monthlySalary,
-                Bank bank,
-                CreditAccount creditAccount,
-                PaymentAccount paymentAccount,
+//                ArrayList<Bank> banks,
+//                ArrayList<CreditAccount> creditAccounts,
+//                ArrayList<PaymentAccount> paymentAccounts,
                 Integer creditRating) {
         super(id);
         this.fullName = fullName;
         this.birthDate = birthDate;
         this.placeOfWork = placeOfWork;
         this.monthlySalary = monthlySalary;
-        this.bank = bank;
-        this.creditAccount = creditAccount;
-        this.paymentAccount = paymentAccount;
+//        this.banks = banks;
+//        this.creditAccounts = creditAccounts;
+//        this.paymentAccounts = paymentAccounts;
         this.creditRating = creditRating;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "id=" + this.getId() +
+                "id=" + getId() +
                 "fullName=" + fullName +
                 ", birthDate='" + birthDate + '\'' +
                 ", placeOfWork=" + placeOfWork +
                 ", monthlySalary='" + monthlySalary + '\'' +
-                ", bank=" + bank +
-                ", creditAccount=" + creditAccount +
-                ", paymentAccount=" + paymentAccount +
+                ", banks=" + banks +
+                ", creditAccounts=" + creditAccounts +
+                ", paymentAccounts=" + paymentAccounts +
                 ", creditRating=" + creditRating +
                 '}';
     }
@@ -82,29 +83,29 @@ public class User extends Identifier {
         this.monthlySalary = monthlySalary;
     }
 
-    public Bank getBank() {
-        return bank;
-    }
-
-    public void setBank(Bank bank) {
-        this.bank = bank;
-    }
-
-    public CreditAccount getCreditAccount() {
-        return creditAccount;
-    }
-
-    public void setCreditAccount(CreditAccount creditAccount) {
-        this.creditAccount = creditAccount;
-    }
-
-    public PaymentAccount getPaymentAccount() {
-        return paymentAccount;
-    }
-
-    public void setPaymentAccount(PaymentAccount paymentAccount) {
-        this.paymentAccount = paymentAccount;
-    }
+//    public ArrayList<Bank> getBanks() {
+//        return banks;
+//    }
+//
+//    public void setBanks(ArrayList<Bank> banks) {
+//        this.banks = banks;
+//    }
+//
+//    public ArrayList<CreditAccount> getCreditAccounts() {
+//        return creditAccounts;
+//    }
+//
+//    public void setCreditAccounts(ArrayList<CreditAccount> creditAccounts) {
+//        this.creditAccounts = creditAccounts;
+//    }
+//
+//    public ArrayList<PaymentAccount> getPaymentAccounts() {
+//        return paymentAccounts;
+//    }
+//
+//    public void setPaymentAccounts(ArrayList<PaymentAccount> paymentAccount) {
+//        this.paymentAccounts = paymentAccounts;
+//    }
 
     public Integer getCreditRating() {
         return creditRating;

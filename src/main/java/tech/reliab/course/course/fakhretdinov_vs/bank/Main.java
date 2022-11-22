@@ -20,7 +20,6 @@ public class Main {
                 new CreditAccountServiceImpl(),
                 new PaymentAccountServiceImpl());
 
-
         // сервисы
         BankService bankService = manager.bankService;
         BankAtmService atmService = manager.bankAtmService;
@@ -49,7 +48,7 @@ public class Main {
         var atm = atmService.create("НЕНАВИЖУ", bank, bankOffice, employee);
 
         // создаем клиента
-        var user = userService.create("НЕНАВИЖУ", Date.from(Instant.now()), "НЕНАВИЖУ 2", bank);
+        var user = userService.create("НЕНАВИЖУ", Date.from(Instant.now()), "НЕНАВИЖУ 2");
 
         var paymentAccount = paymentAccountService.create(user, bank);
 
