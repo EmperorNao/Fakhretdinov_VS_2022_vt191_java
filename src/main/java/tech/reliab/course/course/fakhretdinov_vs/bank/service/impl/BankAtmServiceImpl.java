@@ -4,30 +4,31 @@ import tech.reliab.course.course.fakhretdinov_vs.bank.entity.Bank;
 import tech.reliab.course.course.fakhretdinov_vs.bank.entity.BankAtm;
 import tech.reliab.course.course.fakhretdinov_vs.bank.entity.BankOffice;
 import tech.reliab.course.course.fakhretdinov_vs.bank.entity.Employee;
+import tech.reliab.course.course.fakhretdinov_vs.bank.entity.core.Identifier;
 import tech.reliab.course.course.fakhretdinov_vs.bank.entity.enums.BankAtmStatus;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.BankAtmService;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.BankService;
+import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceContainer;
+import tech.reliab.course.course.fakhretdinov_vs.bank.service.impl.core.ServiceContainerImpl;
 
+import java.util.ArrayList;
 import java.util.Random;
+import java.util.function.Function;
 
-public class BankAtmServiceImpl implements BankAtmService {
+public class BankAtmServiceImpl implements BankAtmService  {
 
     private static Long currentMaxId = 0L;
     private static Random randomGenerator = new Random();
-    private BankAtm bankAtm;
+    ServiceContainer<BankAtm> container;
 
-    /**
-     *
-     * @param name - имя банкомата
-     * @param bank - банк, которому принадлежит банкомат
-     * @param office - офис, в котором находится банкомат
-     * @param employee - обслуживающий сотруднике
-     * @return возвращает созданный объект банкомата
-     */
+    public BankAtmServiceImpl() {
+        container = new ServiceContainerImpl<BankAtm>();
+    }
+
     @Override
     public BankAtm create(String name, Bank bank, BankOffice office, Employee employee) {
 
-        bankAtm = new BankAtm(
+        BankAtm bankAtm = new BankAtm(
                 ++currentMaxId,
                 bank,
                 name,
@@ -39,37 +40,25 @@ public class BankAtmServiceImpl implements BankAtmService {
                 bank.getAmountOfMoney(),
                 randomGenerator.nextInt(6666)
         );
+        container.update(bankAtm);
         return bankAtm;
 
     }
 
-    /**
-     *
-     * @return возвращает объект банкомат
-     */
     @Override
-    public BankAtm read() {
-        return bankAtm;
+    public ArrayList<BankAtm> read() {
+        Function<BankAtm, Boolean> always_true = obj -> Boolean.TRUE;
+        return container.grep(always_true);
     }
 
-    /**
-     *
-     * @param bankAtm - новый банкомат
-     */
     @Override
-    public void update(BankAtm bankAtm) {
-        this.bankAtm = bankAtm;
+    public void update(BankAtm obj) {
+        container.update(obj);
     }
 
-    /**
-     *
-     * @param bankAtm - банкомат для удаления
-     */
     @Override
-    public void delete(BankAtm bankAtm) {
-        if (this.bankAtm == bankAtm) {
-            this.bankAtm = null;
-        }
+    public void delete(BankAtm obj) {
+        container.delete(obj);
     }
 
 }

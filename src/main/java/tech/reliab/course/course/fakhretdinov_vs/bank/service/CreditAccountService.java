@@ -1,10 +1,11 @@
 package tech.reliab.course.course.fakhretdinov_vs.bank.service;
 
 import tech.reliab.course.course.fakhretdinov_vs.bank.entity.*;
+import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.Service;
 
 import java.util.Date;
 
-public interface CreditAccountService {
+public interface CreditAccountService extends Service<CreditAccount> {
     CreditAccount create(User user,
                          Bank bank,
                          Date creditStart,
@@ -14,7 +15,4 @@ public interface CreditAccountService {
                          Long monthlyPayment,
                          Employee creditEmployee,
                          PaymentAccount paymentAccount);
-    CreditAccount read();
-    void update(CreditAccount creditAccount);
-    void delete(CreditAccount creditAccount);
 }

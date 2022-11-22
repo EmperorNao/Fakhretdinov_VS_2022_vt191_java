@@ -6,27 +6,27 @@ import tech.reliab.course.course.fakhretdinov_vs.bank.entity.BankOffice;
 import tech.reliab.course.course.fakhretdinov_vs.bank.entity.BankOffice;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.BankOfficeService;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.BankService;
+import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceContainer;
+import tech.reliab.course.course.fakhretdinov_vs.bank.service.impl.core.ServiceContainerImpl;
 
+import java.util.ArrayList;
 import java.util.Random;
+import java.util.function.Function;
 
 public class BankOfficeServiceImpl implements BankOfficeService {
 
     private static Long currentMaxId = 0L;
     private static Random randomGenerator = new Random();
-    private BankOffice bankOffice;
+    ServiceContainer<BankOffice> container;
+    public BankOfficeServiceImpl() {
+        container = new ServiceContainerImpl<BankOffice>();
+    }
 
-    /**
-     *
-     * @param name - имя офиса
-     * @param bank - банк офиса
-     * @param address - адресс офиса
-     * @param rentPrice - стоимость аренды офиса
-     * @return возвращает созданный объект офиса
-     */
+
     @Override
     public BankOffice create(String name, Bank bank, String address, Long rentPrice) {
 
-        bankOffice = new BankOffice(
+        BankOffice bankOffice = new BankOffice(
                 ++currentMaxId,
                 bank,
                 name,
@@ -44,33 +44,22 @@ public class BankOfficeServiceImpl implements BankOfficeService {
 
     }
 
-    /**
-     *
-     * @return возвращает объект офис
-     */
     @Override
-    public BankOffice read() {
-        return bankOffice;
+    public ArrayList<BankOffice> read() {
+        Function<BankOffice, Boolean> always_true = obj -> Boolean.TRUE;
+        return container.grep(always_true);
     }
 
-    /**
-     *
-     * @param bankOffice - новый офис
-     */
     @Override
-    public void update(BankOffice bankOffice) {
-        this.bankOffice = bankOffice;
+    public void update(BankOffice obj) {
+        container.update(obj);
     }
 
-    /**
-     *
-     * @param bankOffice - офис для удаления
-     */
     @Override
-    public void delete(BankOffice bankOffice) {
-        if (this.bankOffice == bankOffice) {
-            this.bankOffice = null;
-        }
+    public void delete(BankOffice obj) {
+        container.delete(obj);
     }
+
+
 
 }

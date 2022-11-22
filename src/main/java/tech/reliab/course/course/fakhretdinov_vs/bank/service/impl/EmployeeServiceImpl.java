@@ -1,31 +1,26 @@
 package tech.reliab.course.course.fakhretdinov_vs.bank.service.impl;
 
-import tech.reliab.course.course.fakhretdinov_vs.bank.entity.Bank;
-import tech.reliab.course.course.fakhretdinov_vs.bank.entity.BankOffice;
-import tech.reliab.course.course.fakhretdinov_vs.bank.entity.CreditAccount;
-import tech.reliab.course.course.fakhretdinov_vs.bank.entity.Employee;
+import tech.reliab.course.course.fakhretdinov_vs.bank.entity.*;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.BankService;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.EmployeeService;
+import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceContainer;
+import tech.reliab.course.course.fakhretdinov_vs.bank.service.impl.core.ServiceContainerImpl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
+import java.util.function.Function;
 
 public class EmployeeServiceImpl implements EmployeeService {
 
     private static Long currentMaxId = 0L;
     private static Random randomGenerator = new Random();
     private Employee employee;
+    ServiceContainer<Employee> container;
+    public EmployeeServiceImpl() {
+        container = new ServiceContainerImpl<Employee>();
+    }
 
-    /**
-     *
-     * @param fullName - имя пользователя
-     * @param position - должность пользователя
-     * @param bank - банк пользователя
-     * @param birthDate - дата рождения пользователя
-     * @param office - банковский офис пользователься
-     * @param salary - зароботная плата пользователя
-     * @return возвращает созданного пользователя
-     */
     @Override
     public Employee create(String fullName, String position, Bank bank, Date birthDate, BankOffice office, Long salary) {
         employee = new Employee (
@@ -43,33 +38,21 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employee;
     }
 
-    /**
-     *
-     * @return возвращает объект сотрудника
-     */
     @Override
-    public Employee read() {
-        return employee;
+    public ArrayList<Employee> read() {
+        Function<Employee, Boolean> always_true = obj -> Boolean.TRUE;
+        return container.grep(always_true);
     }
 
-    /**
-     *
-     * @param employee - новый сотрудник
-     */
     @Override
-    public void update(Employee employee) {
-        this.employee = employee;
+    public void update(Employee obj) {
+        container.update(obj);
     }
 
-    /**
-     *
-     * @param employee - сотрудник для удаления
-     */
     @Override
-    public void delete(Employee employee) {
-        if (this.employee == employee) {
-            this.employee = null;
-        }
+    public void delete(Employee obj) {
+        container.delete(obj);
     }
+
 
 }

@@ -3,6 +3,7 @@ package tech.reliab.course.course.fakhretdinov_vs.bank;
 
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.*;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.impl.*;
+import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceManager;
 
 import java.time.Instant;
 import java.util.Date;
@@ -11,14 +12,23 @@ public class Main {
 
     public static void main(String[] args) {
 
+        ServiceManager manager = new ServiceManager(new BankServiceImpl(),
+                new BankAtmServiceImpl(),
+                new BankOfficeServiceImpl(),
+                new EmployeeServiceImpl(),
+                new UserServiceImpl(),
+                new CreditAccountServiceImpl(),
+                new PaymentAccountServiceImpl());
+
+
         // сервисы
-        BankServiceImpl bankService = new BankServiceImpl();
-        BankAtmService atmService = new BankAtmServiceImpl();
-        BankOfficeService bankOfficeService = new BankOfficeServiceImpl();
-        EmployeeService employeeService = new EmployeeServiceImpl();
-        UserService userService = new UserServiceImpl();
-        CreditAccountService creditAccountService = new CreditAccountServiceImpl();
-        PaymentAccountService paymentAccountService = new PaymentAccountServiceImpl();
+        BankService bankService = manager.bankService;
+        BankAtmService atmService = manager.bankAtmService;
+        BankOfficeService bankOfficeService = manager.bankOfficeService;
+        EmployeeService employeeService = manager.employeeService;
+        UserService userService = manager.userService;
+        CreditAccountService creditAccountService = manager.creditAccountService;
+        PaymentAccountService paymentAccountService = manager.paymentAccountService;
 
 
         // создаем банк

@@ -1,13 +1,11 @@
 package tech.reliab.course.course.fakhretdinov_vs.bank.service;
 
 import tech.reliab.course.course.fakhretdinov_vs.bank.entity.*;
+import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.Service;
 
 import java.util.Date;
 
-public interface PaymentAccountService {
-    PaymentAccount create(User user,
-                         Bank bank);
-    PaymentAccount read();
-    void update(PaymentAccount paymentAccount);
-    void delete(PaymentAccount paymentAccount);
+public interface PaymentAccountService extends Service<PaymentAccount> {
+    PaymentAccount create(User user, Bank bank);
+
 }

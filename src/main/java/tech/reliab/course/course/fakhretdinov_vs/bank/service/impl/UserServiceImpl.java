@@ -1,28 +1,29 @@
 package tech.reliab.course.course.fakhretdinov_vs.bank.service.impl;
 
 import tech.reliab.course.course.fakhretdinov_vs.bank.entity.Bank;
+import tech.reliab.course.course.fakhretdinov_vs.bank.entity.BankAtm;
 import tech.reliab.course.course.fakhretdinov_vs.bank.entity.PaymentAccount;
 import tech.reliab.course.course.fakhretdinov_vs.bank.entity.User;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.BankService;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.UserService;
+import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceContainer;
+import tech.reliab.course.course.fakhretdinov_vs.bank.service.impl.core.ServiceContainerImpl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
+import java.util.function.Function;
 
 public class UserServiceImpl implements UserService {
 
     private static Long currentMaxId = 0L;
     private static Random randomGenerator = new Random();
     private User user;
+    ServiceContainer<User> container;
+    public UserServiceImpl() {
+        container = new ServiceContainerImpl<User>();
+    }
 
-    /**
-     *
-     * @param fullName - ФИО пользователя
-     * @param birthdate - дата рождения пользователя
-     * @param placeOfWork - место работы пользователя
-     * @param bank - банк пользователя
-     * @return возвращает созданный объект пользователя
-     */
     @Override
     public User create(String fullName, Date birthdate, String placeOfWork, Bank bank) {
 
@@ -41,33 +42,21 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
-    /**
-     *
-     * @return возвращает объект пользователя
-     */
     @Override
-    public User read() {
-        return user;
+    public ArrayList<User> read() {
+        Function<User, Boolean> always_true = obj -> Boolean.TRUE;
+        return container.grep(always_true);
     }
 
-    /**
-     *
-     * @param user - новый пользователь
-     */
     @Override
-    public void update(User user) {
-        this.user = user;
+    public void update(User obj) {
+        container.update(obj);
     }
 
-    /**
-     *
-     * @param user - пользователь для удаления
-     */
     @Override
-    public void delete(User user) {
-        if (this.user == user) {
-            this.user = null;
-        }
+    public void delete(User obj) {
+        container.delete(obj);
     }
+
 
 }

@@ -1,26 +1,25 @@
 package tech.reliab.course.course.fakhretdinov_vs.bank.service.impl;
 
-import tech.reliab.course.course.fakhretdinov_vs.bank.entity.Bank;
-import tech.reliab.course.course.fakhretdinov_vs.bank.entity.BankOffice;
-import tech.reliab.course.course.fakhretdinov_vs.bank.entity.PaymentAccount;
-import tech.reliab.course.course.fakhretdinov_vs.bank.entity.User;
+import tech.reliab.course.course.fakhretdinov_vs.bank.entity.*;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.BankService;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.PaymentAccountService;
+import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceContainer;
+import tech.reliab.course.course.fakhretdinov_vs.bank.service.impl.core.ServiceContainerImpl;
 
+import java.util.ArrayList;
 import java.util.Random;
+import java.util.function.Function;
 
 public class PaymentAccountServiceImpl implements PaymentAccountService {
 
     private static Long currentMaxId = 0L;
     private static Random randomGenerator = new Random();
     private PaymentAccount paymentAccount;
+    ServiceContainer<PaymentAccount> container;
+    public PaymentAccountServiceImpl() {
+        container = new ServiceContainerImpl<PaymentAccount>();
+    }
 
-    /**
-     *
-     * @param user - пользователь счёта
-     * @param bank - банк счёта
-     * @return возвращает созданный объект счёта
-     */
     @Override
     public PaymentAccount create(User user, Bank bank) {
         paymentAccount = new PaymentAccount(
@@ -33,33 +32,21 @@ public class PaymentAccountServiceImpl implements PaymentAccountService {
         return paymentAccount;
     }
 
-    /**
-     *
-     * @return возвращает объект платёжного аккаунта
-     */
     @Override
-    public PaymentAccount read() {
-        return paymentAccount;
+    public ArrayList<PaymentAccount> read() {
+        Function<PaymentAccount, Boolean> always_true = obj -> Boolean.TRUE;
+        return container.grep(always_true);
     }
 
-    /**
-     *
-     * @param paymentAccount - новый платёжный аккаунт
-     */
     @Override
-    public void update(PaymentAccount paymentAccount) {
-        this.paymentAccount = paymentAccount;
+    public void update(PaymentAccount obj) {
+        container.update(obj);
     }
 
-    /**
-     *
-     * @param paymentAccount - платёжный аккаунт для удаления
-     */
     @Override
-    public void delete(PaymentAccount paymentAccount) {
-        if (this.paymentAccount == paymentAccount) {
-            this.paymentAccount = null;
-        }
+    public void delete(PaymentAccount obj) {
+        container.delete(obj);
     }
+
 
 }

@@ -2,11 +2,15 @@ package tech.reliab.course.course.fakhretdinov_vs.bank.service.impl;
 
 import tech.reliab.course.course.fakhretdinov_vs.bank.entity.*;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.CreditAccountService;
+import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceContainer;
+import tech.reliab.course.course.fakhretdinov_vs.bank.service.impl.core.ServiceContainerImpl;
 
 import java.time.Period;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
+import java.util.function.Function;
 
 public class CreditAccountServiceImpl implements CreditAccountService {
 
@@ -14,20 +18,11 @@ public class CreditAccountServiceImpl implements CreditAccountService {
     private static Long currentMaxId = 0L;
     private static Random randomGenerator = new Random();
     private CreditAccount creditAccount;
+    ServiceContainer<CreditAccount> container;
+    public CreditAccountServiceImpl() {
+        container = new ServiceContainerImpl<CreditAccount>();
+    }
 
-    /**
-     *
-     * @param user - пользователь крединтого счета
-     * @param bank - банк кредитного счёта
-     * @param creditStart - дата старта кредита
-     * @param creditEnd - дата окончания кредита
-     * @param numberOfMonths - количество месяцев кредита
-     * @param amountOfMoney - сумма кредита
-     * @param monthlyPayment - оплата в месяц
-     * @param creditEmployee - осблуживающий сотрудник
-     * @param paymentAccount - платёжный счёт
-     * @return возвращает созданный кредитный аккаунт
-     */
     @Override
     public CreditAccount create(User user,
                                 Bank bank,
@@ -59,33 +54,21 @@ public class CreditAccountServiceImpl implements CreditAccountService {
 
     }
 
-    /**
-     *
-     * @return возвращает объект кредит аккаунта
-     */
     @Override
-    public CreditAccount read() {
-        return creditAccount;
+    public ArrayList<CreditAccount> read() {
+        Function<CreditAccount, Boolean> always_true = obj -> Boolean.TRUE;
+        return container.grep(always_true);
     }
 
-    /**
-     *
-     * @param creditAccount - новый кредит аккаунта
-     */
     @Override
-    public void update(CreditAccount creditAccount) {
-        this.creditAccount = creditAccount;
+    public void update(CreditAccount obj) {
+        container.update(obj);
     }
 
-    /**
-     *
-     * @param creditAccount - кредит аккаунта для удаления
-     */
     @Override
-    public void delete(CreditAccount creditAccount) {
-        if (this.creditAccount == creditAccount) {
-            this.creditAccount = null;
-        }
+    public void delete(CreditAccount obj) {
+        container.delete(obj);
     }
+
 
 }
