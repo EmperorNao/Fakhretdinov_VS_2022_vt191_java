@@ -20,7 +20,7 @@ public class Main {
                 new CreditAccountServiceImpl(),
                 new PaymentAccountServiceImpl());
 
-        // сервисы
+
         BankService bankService = manager.bankService;
         BankAtmService atmService = manager.bankAtmService;
         BankOfficeService bankOfficeService = manager.bankOfficeService;
@@ -29,14 +29,10 @@ public class Main {
         CreditAccountService creditAccountService = manager.creditAccountService;
         PaymentAccountService paymentAccountService = manager.paymentAccountService;
 
-
-        // создаем банк
         var bank = bankService.create("Сбербанк");
 
-        // создаем офис
         var bankOffice = bankOfficeService.create("Главный офис", bank, "ул. Пушкина, д. Колотушкина", 100L);
 
-        // создаем работника
         var employee = employeeService.create("А.А.А",
                 "Главный директор",
                 bank,
@@ -44,10 +40,8 @@ public class Main {
                 bankOffice,
                 1L);
 
-        // создаем банкомат
         var atm = atmService.create("Банкомат #1", bank, bankOffice, employee);
 
-        // создаем клиента
         var user = userService.create("Б.Б.Б", LocalDate.of(2000, 1, 1), "Каменщик");
 
         var paymentAccount = paymentAccountService.create(user, bank);
