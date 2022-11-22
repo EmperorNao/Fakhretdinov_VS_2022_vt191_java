@@ -2,13 +2,13 @@ package tech.reliab.course.course.fakhretdinov_vs.bank.entity;
 
 import tech.reliab.course.course.fakhretdinov_vs.bank.entity.core.Identifier;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class User extends Identifier {
 
     private String fullName;
-    private Date birthDate;
+    private LocalDate birthDate;
     private String placeOfWork;
     private Long monthlySalary;
     private ArrayList<Bank> banks;
@@ -18,21 +18,15 @@ public class User extends Identifier {
 
     public User(Long id,
                 String fullName,
-                Date birthDate,
+                LocalDate birthDate,
                 String placeOfWork,
                 Long monthlySalary,
-//                ArrayList<Bank> banks,
-//                ArrayList<CreditAccount> creditAccounts,
-//                ArrayList<PaymentAccount> paymentAccounts,
                 Integer creditRating) {
         super(id);
         this.fullName = fullName;
         this.birthDate = birthDate;
         this.placeOfWork = placeOfWork;
         this.monthlySalary = monthlySalary;
-//        this.banks = banks;
-//        this.creditAccounts = creditAccounts;
-//        this.paymentAccounts = paymentAccounts;
         this.creditRating = creditRating;
     }
 
@@ -59,11 +53,11 @@ public class User extends Identifier {
         this.fullName = fullName;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -82,30 +76,6 @@ public class User extends Identifier {
     public void setMonthlySalary(Long monthlySalary) {
         this.monthlySalary = monthlySalary;
     }
-
-//    public ArrayList<Bank> getBanks() {
-//        return banks;
-//    }
-//
-//    public void setBanks(ArrayList<Bank> banks) {
-//        this.banks = banks;
-//    }
-//
-//    public ArrayList<CreditAccount> getCreditAccounts() {
-//        return creditAccounts;
-//    }
-//
-//    public void setCreditAccounts(ArrayList<CreditAccount> creditAccounts) {
-//        this.creditAccounts = creditAccounts;
-//    }
-//
-//    public ArrayList<PaymentAccount> getPaymentAccounts() {
-//        return paymentAccounts;
-//    }
-//
-//    public void setPaymentAccounts(ArrayList<PaymentAccount> paymentAccount) {
-//        this.paymentAccounts = paymentAccounts;
-//    }
 
     public Integer getCreditRating() {
         return creditRating;

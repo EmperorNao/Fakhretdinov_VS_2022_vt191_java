@@ -10,4 +10,6 @@ import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceContai
 public interface BankAtmService extends Service<BankAtm> {
     BankAtm create(String name, Bank bank, BankOffice office, Employee employee);
 
+    BankAtm get(Long id);
+
 }

@@ -1,9 +1,6 @@
 package tech.reliab.course.course.fakhretdinov_vs.bank.service.impl;
 
-import tech.reliab.course.course.fakhretdinov_vs.bank.entity.Bank;
-import tech.reliab.course.course.fakhretdinov_vs.bank.entity.BankAtm;
-import tech.reliab.course.course.fakhretdinov_vs.bank.entity.BankOffice;
-import tech.reliab.course.course.fakhretdinov_vs.bank.entity.Employee;
+import tech.reliab.course.course.fakhretdinov_vs.bank.entity.*;
 import tech.reliab.course.course.fakhretdinov_vs.bank.entity.core.Identifier;
 import tech.reliab.course.course.fakhretdinov_vs.bank.entity.enums.BankAtmStatus;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.BankAtmService;
@@ -64,6 +61,11 @@ public class BankAtmServiceImpl implements BankAtmService  {
     }
 
     @Override
+    public BankAtm get(Long id) {
+        return container.get(id);
+    }
+
+    @Override
     public ArrayList<BankAtm> read() {
         Function<BankAtm, Boolean> always_true = obj -> Boolean.TRUE;
         return container.grep(always_true);
@@ -76,7 +78,18 @@ public class BankAtmServiceImpl implements BankAtmService  {
 
     @Override
     public void delete(BankAtm obj) {
+
+        Bank bank = manager.bankService.get(obj.getBankId());
+        bank.setNumberOfAtms(bank.getNumberOfAtms() - 1);
+        manager.bankService.update(bank);
+
+        Function<BankOffice, Boolean> find_office = office -> office.getAddress().equals(obj.getAddress());
+        BankOffice office = manager.bankOfficeService.grep(find_office).get(0);
+        office.setNumberOfAtms(office.getNumberOfAtms() - 1);
+        manager.bankOfficeService.update(office);
+
         container.delete(obj);
+
     }
 
     @Override

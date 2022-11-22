@@ -2,15 +2,18 @@ package tech.reliab.course.course.fakhretdinov_vs.bank.service;
 
 import tech.reliab.course.course.fakhretdinov_vs.bank.entity.Bank;
 import tech.reliab.course.course.fakhretdinov_vs.bank.entity.BankAtm;
+import tech.reliab.course.course.fakhretdinov_vs.bank.entity.PaymentAccount;
 import tech.reliab.course.course.fakhretdinov_vs.bank.entity.User;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.Service;
 
-import java.util.Date;
+import java.time.LocalDate;
+
 
 public interface UserService extends Service<User> {
     User create(String fullName,
-                Date birthdate,
+                LocalDate birthdate,
                 String placeOfWork);
 
+    User get(Long id);
 
 }

@@ -6,7 +6,7 @@ import tech.reliab.course.course.fakhretdinov_vs.bank.service.impl.*;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceManager;
 
 import java.time.Instant;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Main {
 
@@ -31,33 +31,31 @@ public class Main {
 
 
         // создаем банк
-        var bank = bankService.create("НЕНАВИЖУ");
+        var bank = bankService.create("Сбербанк");
 
         // создаем офис
-        var bankOffice = bankOfficeService.create("НЕНАВИЖУ", bank, "НЕНАВИЖУ 2", 0L);
+        var bankOffice = bankOfficeService.create("Главный офис", bank, "ул. Пушкина, д. Колотушкина", 100L);
 
         // создаем работника
-        var employee = employeeService.create("НЕНАВИЖУ",
-                "НЕНАВИЖУ 2",
+        var employee = employeeService.create("А.А.А",
+                "Главный директор",
                 bank,
-                Date.from(Instant.now()),
+                LocalDate.of(1980, 3, 10),
                 bankOffice,
                 1L);
 
         // создаем банкомат
-        var atm = atmService.create("НЕНАВИЖУ", bank, bankOffice, employee);
+        var atm = atmService.create("Банкомат #1", bank, bankOffice, employee);
 
         // создаем клиента
-        var user = userService.create("НЕНАВИЖУ", Date.from(Instant.now()), "НЕНАВИЖУ 2");
+        var user = userService.create("Б.Б.Б", LocalDate.of(2000, 1, 1), "Каменщик");
 
         var paymentAccount = paymentAccountService.create(user, bank);
 
         var creditAccount = creditAccountService.create(user, bank,
-                Date.from(Instant.now()),
-                Date.from(Instant.now()),
-                1,
-                0L,
-                0L,
+                LocalDate.of(2021, 5, 20),
+                LocalDate.of(2023, 5, 20),
+                100000L,
                 employee,
                 paymentAccount);
 

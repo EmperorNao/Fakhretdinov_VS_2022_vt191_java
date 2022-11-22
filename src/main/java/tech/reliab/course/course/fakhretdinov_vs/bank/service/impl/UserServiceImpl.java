@@ -7,8 +7,8 @@ import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceContai
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceManager;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.impl.core.ServiceContainerImpl;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Random;
 import java.util.function.Function;
 
@@ -24,10 +24,8 @@ public class UserServiceImpl implements UserService {
     }
     @Override
     public User create(String fullName,
-                       Date birthdate,
+                       LocalDate birthdate,
                        String placeOfWork) {
-
-
 
         Long salary = randomGenerator.nextLong(1000);
         user = new User(
@@ -48,6 +46,12 @@ public class UserServiceImpl implements UserService {
 
     public void setServiceManager(ServiceManager manager) {
         this.manager = manager;
+    }
+
+
+    @Override
+    public User get(Long id) {
+        return container.get(id);
     }
 
     @Override

@@ -7,8 +7,8 @@ import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceContai
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceManager;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.impl.core.ServiceContainerImpl;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Random;
 import java.util.function.Function;
 
@@ -28,7 +28,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee create(String fullName, String position, Bank bank, Date birthDate, BankOffice office, Long salary) {
+    public Employee create(String fullName, String position, Bank bank, LocalDate birthDate, BankOffice office, Long salary) {
 
         employee = new Employee (
                 ++currentMaxId,
@@ -51,6 +51,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    public Employee get(Long id) {
+        return container.get(id);
+    }
+
+    @Override
     public ArrayList<Employee> read() {
         Function<Employee, Boolean> always_true = obj -> Boolean.TRUE;
         return container.grep(always_true);
@@ -63,7 +68,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void delete(Employee obj) {
+
+        Bank bank = manager.bankService.get(obj.getBankId());
+        bank.setNumberOfEmployes(bank.getNumberOfEmployes() - 1);
+        manager.bankService.update(bank);
+
         container.delete(obj);
+
     }
 
     public ArrayList<Employee> grep(Function<Employee, Boolean> func) {

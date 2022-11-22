@@ -51,6 +51,11 @@ public class BankServiceImpl implements BankService {
     }
 
     @Override
+    public Bank get(Long id) {
+        return container.get(id);
+    }
+
+    @Override
     public ArrayList<Bank> read() {
         Function<Bank, Boolean> always_true = obj -> Boolean.TRUE;
         return container.grep(always_true);

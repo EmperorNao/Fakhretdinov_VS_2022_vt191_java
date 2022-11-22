@@ -56,6 +56,11 @@ public class BankOfficeServiceImpl implements BankOfficeService {
     }
 
     @Override
+    public BankOffice get(Long id) {
+        return container.get(id);
+    }
+
+    @Override
     public ArrayList<BankOffice> read() {
         Function<BankOffice, Boolean> always_true = obj -> Boolean.TRUE;
         return container.grep(always_true);
@@ -68,7 +73,13 @@ public class BankOfficeServiceImpl implements BankOfficeService {
 
     @Override
     public void delete(BankOffice obj) {
+
+        Bank bank = manager.bankService.get(obj.getBankId());
+        bank.setNumberOfOffices(bank.getNumberOfOffices() - 1);
+        manager.bankService.update(bank);
+
         container.delete(obj);
+
     }
 
     @Override

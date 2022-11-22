@@ -6,10 +6,11 @@ import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceContai
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceManager;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.impl.core.ServiceContainerImpl;
 
+import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Random;
 import java.util.function.Function;
 
@@ -33,26 +34,23 @@ public class CreditAccountServiceImpl implements CreditAccountService {
     @Override
     public CreditAccount create(User user,
                                 Bank bank,
-                                Date creditStart,
-                                Date creditEnd,
-                                Integer numberOfMonths,
+                                LocalDate creditStart,
+                                LocalDate creditEnd,
                                 Long amountOfMoney,
-                                Long monthlyPayment,
                                 Employee creditEmployee,
                                 PaymentAccount paymentAccount) {
 
+        Integer duration = (int)ChronoUnit.MONTHS.between(creditStart, creditEnd);
+        Long monthly_payment = amountOfMoney / duration;
         creditAccount = new CreditAccount(
                 ++currentMaxId,
                 user.getId(),
                 bank.getName(),
                 creditStart,
                 creditEnd,
-                Period.between(
-                        creditStart.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
-                        creditEnd.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
-                ).getMonths(),
+                duration,
                 amountOfMoney,
-                monthlyPayment,
+                monthly_payment,
                 bank.getInterestRate(),
                 creditEmployee.getId(),
                 paymentAccount.getId()
@@ -69,6 +67,11 @@ public class CreditAccountServiceImpl implements CreditAccountService {
     }
 
     @Override
+    public CreditAccount get(Long id) {
+        return container.get(id);
+    }
+
+    @Override
     public ArrayList<CreditAccount> read() {
         Function<CreditAccount, Boolean> always_true = obj -> Boolean.TRUE;
         return container.grep(always_true);
@@ -81,7 +84,18 @@ public class CreditAccountServiceImpl implements CreditAccountService {
 
     @Override
     public void delete(CreditAccount obj) {
+
+        Function<Bank, Boolean> find_bank = bank -> bank.getName().equals(obj.getBankName());
+
+        Bank bank = manager.bankService.grep(find_bank).get(0);
+        User user = manager.userService.get(obj.getUserId());
+
         container.delete(obj);
+        if (!manager.bankService.isClient(bank, user)) {
+            bank.setNumberOfClients(bank.getNumberOfClients() - 1);
+            manager.bankService.update(bank);
+        }
+
     }
 
     public ArrayList<CreditAccount> grep(Function<CreditAccount, Boolean> func) {

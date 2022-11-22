@@ -2,14 +2,15 @@ package tech.reliab.course.course.fakhretdinov_vs.bank.entity;
 
 import tech.reliab.course.course.fakhretdinov_vs.bank.entity.core.Identifier;
 
-import java.util.Date;
+import java.time.LocalDate;
+
 
 public class CreditAccount extends Identifier {
 
     private Long userId;
     private String bankName;
-    private Date creditStart;
-    private Date creditEnd;
+    private LocalDate creditStart;
+    private LocalDate creditEnd;
     private Integer numberOfMonths;
     private Long amountOfMoney;
     private Long monthlyPayment;
@@ -21,8 +22,8 @@ public class CreditAccount extends Identifier {
     public CreditAccount(Long id,
                          Long user,
                          String bankName,
-                         Date creditStart,
-                         Date creditEnd,
+                         LocalDate creditStart,
+                         LocalDate creditEnd,
                          Integer numberOfMonths,
                          Long amountOfMoney,
                          Long monthlyPayment,
@@ -75,19 +76,19 @@ public class CreditAccount extends Identifier {
         this.bankName = bankName;
     }
 
-    public Date getCreditStart() {
+    public LocalDate getCreditStart() {
         return creditStart;
     }
 
-    public void setCreditStart(Date creditStart) {
+    public void setCreditStart(LocalDate creditStart) {
         this.creditStart = creditStart;
     }
 
-    public Date getCreditEnd() {
+    public LocalDate getCreditEnd() {
         return creditEnd;
     }
 
-    public void setCreditEnd(Date creditEnd) {
+    public void setCreditEnd(LocalDate creditEnd) {
         this.creditEnd = creditEnd;
     }
 

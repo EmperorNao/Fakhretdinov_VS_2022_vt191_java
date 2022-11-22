@@ -2,13 +2,14 @@ package tech.reliab.course.course.fakhretdinov_vs.bank.entity;
 
 import tech.reliab.course.course.fakhretdinov_vs.bank.entity.core.Identifier;
 
-import java.util.Date;
+import java.time.LocalDate;
+
 
 public class Employee extends Identifier {
 
     private Long bankId;
     private String fullName;
-    private Date birthDate;
+    private LocalDate birthDate;
     private String position;
     private Boolean workingInOffice;
     private Long bankOfficeId;
@@ -18,7 +19,7 @@ public class Employee extends Identifier {
     public Employee(Long id,
                     Long bank,
                     String fullName,
-                    Date birthDate,
+                    LocalDate birthDate,
                     String position,
                     Boolean workingInOffice,
                     Long bankOffice,
@@ -66,11 +67,11 @@ public class Employee extends Identifier {
         this.fullName = fullName;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
