@@ -12,11 +12,11 @@ public class CreditAccount extends Identifier {
     private LocalDate creditStart;
     private LocalDate creditEnd;
     private int numberOfMonths;
-    private Long amountOfMoney;
-    private Long monthlyPayment;
+    private long amountOfMoney;
+    private long monthlyPayment;
     private int interestRate;
-    private Long creditEmployeeId;
-    private Long paymentAccountId;
+    private long creditEmployeeId;
+    private long paymentAccountId;
 
 
     public CreditAccount(Long id,
@@ -25,11 +25,11 @@ public class CreditAccount extends Identifier {
                          LocalDate creditStart,
                          LocalDate creditEnd,
                          int numberOfMonths,
-                         Long amountOfMoney,
-                         Long monthlyPayment,
+                         long amountOfMoney,
+                         long monthlyPayment,
                          int interestRate,
-                         Long creditEmployee,
-                         Long paymentAccount) {
+                         long creditEmployee,
+                         long paymentAccount) {
         super(id);
         this.userId = user;
         this.bankName = bankName;
@@ -100,19 +100,19 @@ public class CreditAccount extends Identifier {
         this.numberOfMonths = numberOfMonths;
     }
 
-    public Long getAmountOfMoney() {
+    public long getAmountOfMoney() {
         return amountOfMoney;
     }
 
-    public void setAmountOfMoney(Long amountOfMoney) {
+    public void setAmountOfMoney(long amountOfMoney) {
         this.amountOfMoney = amountOfMoney;
     }
 
-    public Long getMonthlyPayment() {
+    public long getMonthlyPayment() {
         return monthlyPayment;
     }
 
-    public void setMonthlyPayment(Long monthlyPayment) {
+    public void setMonthlyPayment(long monthlyPayment) {
         this.monthlyPayment = monthlyPayment;
     }
 

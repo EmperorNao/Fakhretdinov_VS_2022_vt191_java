@@ -21,7 +21,7 @@ public class BankServiceImpl implements BankService {
 
         int rating = randomGenerator.nextInt(100);
         int rate = 20 -  Math.toIntExact(Math.round(20 * (Math.min(1, rating) / 100.0)));
-        Long money = randomGenerator.nextLong(1_000_000L);
+        long money = randomGenerator.nextLong(1_000_000L);
         Bank bank = new Bank(
                 ++currentMaxId,
                 name,

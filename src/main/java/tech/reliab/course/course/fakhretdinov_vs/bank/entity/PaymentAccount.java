@@ -41,7 +41,7 @@ public class PaymentAccount extends Identifier {
         this.bankName = bankName;
     }
 
-    public Long getAmountOfMoney() {
+    public long getAmountOfMoney() {
         return amountOfMoney;
     }
 

@@ -18,7 +18,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     ServiceContainer<Employee> container = new ServiceContainerImpl<>();
 
     @Override
-    public Employee create(String fullName, String position, Bank bank, LocalDate birthDate, BankOffice office, Long salary) {
+    public Employee create(String fullName, String position, Bank bank, LocalDate birthDate, BankOffice office, long salary) {
 
         Employee employee = new Employee(
                 ++currentMaxId,

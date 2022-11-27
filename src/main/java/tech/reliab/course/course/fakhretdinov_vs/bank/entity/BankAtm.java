@@ -13,7 +13,7 @@ public class BankAtm extends Identifier {
     private Long serviceEmployeeId;
     private boolean isPaymentingMoney;
     private boolean isDepositingMoney;
-    private Long numberOfMoney;
+    private long numberOfMoney;
     private int maintenancePrice;
 
     public BankAtm(Long id,
@@ -24,7 +24,7 @@ public class BankAtm extends Identifier {
                    Long serviceEmployeeId,
                    boolean isPaymentingMoney,
                    boolean isDepositingMoney,
-                   Long numberOfMoney,
+                   long numberOfMoney,
                    int maintenancePrice) {
         super(id);
         this.bankId = bankId;
@@ -110,11 +110,11 @@ public class BankAtm extends Identifier {
         isDepositingMoney = depositingMoney;
     }
 
-    public Long getNumberOfMoney() {
+    public long getNumberOfMoney() {
         return numberOfMoney;
     }
 
-    public void setNumberOfMoney(Long numberOfMoney) {
+    public void setNumberOfMoney(long numberOfMoney) {
         this.numberOfMoney = numberOfMoney;
     }
 

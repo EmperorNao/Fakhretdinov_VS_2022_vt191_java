@@ -22,12 +22,12 @@ public class CreditAccountServiceImpl implements CreditAccountService {
                                 Bank bank,
                                 LocalDate creditStart,
                                 LocalDate creditEnd,
-                                Long amountOfMoney,
+                                long amountOfMoney,
                                 Employee creditEmployee,
                                 PaymentAccount paymentAccount) {
 
         int duration = (int)ChronoUnit.MONTHS.between(creditStart, creditEnd);
-        Long monthly_payment = amountOfMoney / duration;
+        long monthly_payment = amountOfMoney / duration;
         CreditAccount creditAccount = new CreditAccount(
                 ++currentMaxId,
                 user.getId(),

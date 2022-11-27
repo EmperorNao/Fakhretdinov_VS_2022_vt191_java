@@ -10,7 +10,7 @@ public interface CreditAccountService extends Service<CreditAccount> {
                          Bank bank,
                          LocalDate creditStart,
                          LocalDate creditEnd,
-                         Long amountOfMoney,
+                         long amountOfMoney,
                          Employee creditEmployee,
                          PaymentAccount paymentAccount);
 

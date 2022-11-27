@@ -18,7 +18,7 @@ public class BankOfficeServiceImpl implements BankOfficeService {
     ServiceContainer<BankOffice> container = new ServiceContainerImpl<>();
 
     @Override
-    public BankOffice create(String name, Bank bank, String address, Long rentPrice) {
+    public BankOffice create(String name, Bank bank, String address, long rentPrice) {
 
         BankOffice bankOffice = new BankOffice(
                 ++currentMaxId,

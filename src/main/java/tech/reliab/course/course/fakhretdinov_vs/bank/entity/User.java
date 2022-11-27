@@ -10,14 +10,14 @@ public class User extends Identifier {
     private String fullName;
     private LocalDate birthDate;
     private String placeOfWork;
-    private Long monthlySalary;
+    private long monthlySalary;
     private int creditRating;
 
     public User(Long id,
                 String fullName,
                 LocalDate birthDate,
                 String placeOfWork,
-                Long monthlySalary,
+                long monthlySalary,
                 int creditRating) {
         super(id);
         this.fullName = fullName;
@@ -63,11 +63,11 @@ public class User extends Identifier {
         this.placeOfWork = placeOfWork;
     }
 
-    public Long getMonthlySalary() {
+    public long getMonthlySalary() {
         return monthlySalary;
     }
 
-    public void setMonthlySalary(Long monthlySalary) {
+    public void setMonthlySalary(long monthlySalary) {
         this.monthlySalary = monthlySalary;
     }
 

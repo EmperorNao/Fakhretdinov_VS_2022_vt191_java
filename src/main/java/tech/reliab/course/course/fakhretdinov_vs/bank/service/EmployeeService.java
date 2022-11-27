@@ -8,7 +8,7 @@ import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.Service;
 import java.time.LocalDate;
 
 public interface EmployeeService extends Service<Employee> {
-    Employee create(String fullName, String position, Bank bank, LocalDate birthDate, BankOffice office, Long salary);
+    Employee create(String fullName, String position, Bank bank, LocalDate birthDate, BankOffice office, long salary);
 
     Employee get(Long id);
 

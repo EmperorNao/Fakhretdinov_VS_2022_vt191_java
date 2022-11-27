@@ -9,7 +9,7 @@ public class Bank extends Identifier {
     private int numberOfEmployes;
     private int numberOfClients;
     private int bankRating;
-    private Long amountOfMoney;
+    private long amountOfMoney;
     private int interestRate;
 
     public Bank(Long id,
@@ -19,7 +19,7 @@ public class Bank extends Identifier {
                 int numberOfEmployes,
                 int numberOfClients,
                 int bankRating,
-                Long amountOfMoney,
+                long amountOfMoney,
                 int interestRate) {
         super(id);
         this.name = name;
@@ -95,11 +95,11 @@ public class Bank extends Identifier {
         this.bankRating = bankRating;
     }
 
-    public Long getAmountOfMoney() {
+    public long getAmountOfMoney() {
         return amountOfMoney;
     }
 
-    public void setAmountOfMoney(Long amountOfMoney) {
+    public void setAmountOfMoney(long amountOfMoney) {
         this.amountOfMoney = amountOfMoney;
     }
 

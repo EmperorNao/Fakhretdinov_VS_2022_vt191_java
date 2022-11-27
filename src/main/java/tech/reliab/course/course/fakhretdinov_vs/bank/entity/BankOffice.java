@@ -13,8 +13,8 @@ public class BankOffice extends Identifier {
     private boolean creditCanBeIssued;
     private boolean isPaymentingMoney;
     private boolean isDepositingMoney;
-    private Long numberOfMoney;
-    private Long rentPrice;
+    private long numberOfMoney;
+    private long rentPrice;
 
 
     public BankOffice(Long id,
@@ -27,8 +27,8 @@ public class BankOffice extends Identifier {
                       boolean creditCanBeIssued,
                       boolean isPaymentingMoney,
                       boolean isDepositingMoney,
-                      Long numberOfMoney,
-                      Long rentPrice) {
+                      long numberOfMoney,
+                      long rentPrice) {
         super(id);
         this.bankId = bankId;
         this.name = name;
@@ -133,19 +133,19 @@ public class BankOffice extends Identifier {
         isDepositingMoney = depositingMoney;
     }
 
-    public Long getNumberOfMoney() {
+    public long getNumberOfMoney() {
         return numberOfMoney;
     }
 
-    public void setNumberOfMoney(Long numberOfMoney) {
+    public void setNumberOfMoney(long numberOfMoney) {
         this.numberOfMoney = numberOfMoney;
     }
 
-    public Long getRentPrice() {
+    public long getRentPrice() {
         return rentPrice;
     }
 
-    public void setRentPrice(Long rentPrice) {
+    public void setRentPrice(long rentPrice) {
         this.rentPrice = rentPrice;
     }
 

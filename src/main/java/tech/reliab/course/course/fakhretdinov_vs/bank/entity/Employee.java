@@ -14,24 +14,24 @@ public class Employee extends Identifier {
     private boolean workingInOffice;
     private Long bankOfficeId;
     private boolean creditCanBeIssued;
-    private Long salary;
+    private long salary;
 
     public Employee(Long id,
-                    Long bank,
+                    Long bankId,
                     String fullName,
                     LocalDate birthDate,
                     String position,
                     boolean workingInOffice,
-                    Long bankOffice,
+                    Long bankOfficeId,
                     boolean creditCanBeIssued,
-                    Long salary) {
+                    long salary) {
         super(id);
-        this.bankId = bank;
+        this.bankId = bankId;
         this.fullName = fullName;
         this.birthDate = birthDate;
         this.position = position;
         this.workingInOffice = workingInOffice;
-        this.bankOfficeId = bankOffice;
+        this.bankOfficeId = bankOfficeId;
         this.creditCanBeIssued = creditCanBeIssued;
         this.salary = salary;
     }
@@ -55,8 +55,8 @@ public class Employee extends Identifier {
         return bankId;
     }
 
-    public void setBankId(Long bank) {
-        this.bankId = bank;
+    public void setBankId(Long bankId) {
+        this.bankId = bankId;
     }
 
     public String getFullName() {
@@ -107,11 +107,11 @@ public class Employee extends Identifier {
         this.creditCanBeIssued = creditCanBeIssued;
     }
 
-    public Long getSalary() {
+    public long getSalary() {
         return salary;
     }
 
-    public void setSalary(Long salary) {
+    public void setSalary(long salary) {
         this.salary = salary;
     }
 
