@@ -52,7 +52,7 @@ public class BankServiceImpl implements BankService {
     @Override
     public ArrayList<Bank> read() {
         Function<Bank, Boolean> always_true = obj -> Boolean.TRUE;
-        return container.grep(always_true);
+        return container.getByCondition(always_true);
     }
 
     @Override
@@ -66,8 +66,8 @@ public class BankServiceImpl implements BankService {
     }
 
     @Override
-    public ArrayList<Bank> grep(Function<Bank, Boolean> func) {
-        return container.grep(func);
+    public ArrayList<Bank> getByCondition(Function<Bank, Boolean> condition) {
+        return container.getByCondition(condition);
     }
 
     @Override
@@ -76,8 +76,8 @@ public class BankServiceImpl implements BankService {
         Function<PaymentAccount, Boolean> check_payment_acc = acc -> acc.getBankName().equals(bank.getName());
         Function<CreditAccount, Boolean> check_credit_acc = acc -> acc.getBankName().equals(bank.getName());
 
-        ArrayList<PaymentAccount> payment_accounts = manager.paymentAccountService.grep(check_payment_acc);
-        ArrayList<CreditAccount> credit_accounts = manager.creditAccountService.grep(check_credit_acc);
+        ArrayList<PaymentAccount> payment_accounts = manager.paymentAccountService.getByCondition(check_payment_acc);
+        ArrayList<CreditAccount> credit_accounts = manager.creditAccountService.getByCondition(check_credit_acc);
 
         for (PaymentAccount acc: payment_accounts) {
             if (acc.getUserId().equals(user.getId())) {

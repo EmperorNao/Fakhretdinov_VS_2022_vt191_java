@@ -11,6 +11,6 @@ public interface ServiceContainer<T extends Identifier> {
     T get(Long id);
     void update(T model);
     void delete(T model);
-    ArrayList<T> grep(Function<T, Boolean> func);
+    ArrayList<T> getByCondition(Function<T, Boolean> condition);
 
 }

@@ -48,7 +48,7 @@ public class PaymentAccountServiceImpl implements PaymentAccountService {
     @Override
     public ArrayList<PaymentAccount> read() {
         Function<PaymentAccount, Boolean> always_true = obj -> Boolean.TRUE;
-        return container.grep(always_true);
+        return container.getByCondition(always_true);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class PaymentAccountServiceImpl implements PaymentAccountService {
 
         Function<Bank, Boolean> find_bank = bank -> bank.getName().equals(obj.getBankName());
 
-        Bank bank = manager.bankService.grep(find_bank).get(0);
+        Bank bank = manager.bankService.getByCondition(find_bank).get(0);
         User user = manager.userService.get(obj.getUserId());
 
         container.delete(obj);
@@ -74,8 +74,8 @@ public class PaymentAccountServiceImpl implements PaymentAccountService {
 
     }
 
-    public ArrayList<PaymentAccount> grep(Function<PaymentAccount, Boolean> func) {
-        return container.grep(func);
+    public ArrayList<PaymentAccount> getByCondition(Function<PaymentAccount, Boolean> condition) {
+        return container.getByCondition(condition);
     }
 
 

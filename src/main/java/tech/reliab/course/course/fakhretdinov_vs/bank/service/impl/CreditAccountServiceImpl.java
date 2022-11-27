@@ -65,7 +65,7 @@ public class CreditAccountServiceImpl implements CreditAccountService {
     @Override
     public ArrayList<CreditAccount> read() {
         Function<CreditAccount, Boolean> always_true = obj -> Boolean.TRUE;
-        return container.grep(always_true);
+        return container.getByCondition(always_true);
     }
 
     @Override
@@ -78,7 +78,7 @@ public class CreditAccountServiceImpl implements CreditAccountService {
 
         Function<Bank, Boolean> find_bank = bank -> bank.getName().equals(obj.getBankName());
 
-        Bank bank = manager.bankService.grep(find_bank).get(0);
+        Bank bank = manager.bankService.getByCondition(find_bank).get(0);
         User user = manager.userService.get(obj.getUserId());
 
         container.delete(obj);
@@ -89,8 +89,8 @@ public class CreditAccountServiceImpl implements CreditAccountService {
 
     }
 
-    public ArrayList<CreditAccount> grep(Function<CreditAccount, Boolean> func) {
-        return container.grep(func);
+    public ArrayList<CreditAccount> getByCondition(Function<CreditAccount, Boolean> condition) {
+        return container.getByCondition(condition);
     }
 
 

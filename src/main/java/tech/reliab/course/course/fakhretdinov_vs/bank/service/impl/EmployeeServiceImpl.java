@@ -53,7 +53,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public ArrayList<Employee> read() {
         Function<Employee, Boolean> always_true = obj -> Boolean.TRUE;
-        return container.grep(always_true);
+        return container.getByCondition(always_true);
     }
 
     @Override
@@ -72,8 +72,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     }
 
-    public ArrayList<Employee> grep(Function<Employee, Boolean> func) {
-        return container.grep(func);
+    public ArrayList<Employee> getByCondition(Function<Employee, Boolean> condition) {
+        return container.getByCondition(condition);
     }
 
 

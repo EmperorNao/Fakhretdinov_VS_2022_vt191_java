@@ -56,7 +56,7 @@ public class BankOfficeServiceImpl implements BankOfficeService {
     @Override
     public ArrayList<BankOffice> read() {
         Function<BankOffice, Boolean> always_true = obj -> Boolean.TRUE;
-        return container.grep(always_true);
+        return container.getByCondition(always_true);
     }
 
     @Override
@@ -76,8 +76,8 @@ public class BankOfficeServiceImpl implements BankOfficeService {
     }
 
     @Override
-    public ArrayList<BankOffice> grep(Function<BankOffice, Boolean> func) {
-        return container.grep(func);
+    public ArrayList<BankOffice> getByCondition(Function<BankOffice, Boolean> condition) {
+        return container.getByCondition(condition);
     }
 
 

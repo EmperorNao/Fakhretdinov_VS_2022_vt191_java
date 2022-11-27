@@ -11,7 +11,7 @@ public interface Service<T extends Identifier> {
     ArrayList<T> read();
     void update(T obj);
     void delete(T obj);
-    ArrayList<T> grep(Function<T, Boolean> func);
+    ArrayList<T> getByCondition(Function<T, Boolean> condition);
     void setServiceManager(ServiceManager manager);
 
 }

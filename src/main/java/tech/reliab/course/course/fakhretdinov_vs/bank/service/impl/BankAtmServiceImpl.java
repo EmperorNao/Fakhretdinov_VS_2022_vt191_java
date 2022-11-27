@@ -62,7 +62,7 @@ public class BankAtmServiceImpl implements BankAtmService  {
     @Override
     public ArrayList<BankAtm> read() {
         Function<BankAtm, Boolean> always_true = obj -> Boolean.TRUE;
-        return container.grep(always_true);
+        return container.getByCondition(always_true);
     }
 
     @Override
@@ -78,7 +78,7 @@ public class BankAtmServiceImpl implements BankAtmService  {
         manager.bankService.update(bank);
 
         Function<BankOffice, Boolean> find_office = office -> office.getAddress().equals(obj.getAddress());
-        BankOffice office = manager.bankOfficeService.grep(find_office).get(0);
+        BankOffice office = manager.bankOfficeService.getByCondition(find_office).get(0);
         office.setNumberOfAtms(office.getNumberOfAtms() - 1);
         manager.bankOfficeService.update(office);
 
@@ -87,8 +87,8 @@ public class BankAtmServiceImpl implements BankAtmService  {
     }
 
     @Override
-    public ArrayList<BankAtm> grep(Function<BankAtm, Boolean> func) {
-        return container.grep(func);
+    public ArrayList<BankAtm> getByCondition(Function<BankAtm, Boolean> condition) {
+        return container.getByCondition(condition);
     }
 
 }

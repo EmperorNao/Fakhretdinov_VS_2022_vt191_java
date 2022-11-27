@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public ArrayList<User> read() {
         Function<User, Boolean> always_true = obj -> Boolean.TRUE;
-        return container.grep(always_true);
+        return container.getByCondition(always_true);
     }
 
     @Override
@@ -64,8 +64,8 @@ public class UserServiceImpl implements UserService {
         container.delete(obj);
     }
 
-    public ArrayList<User> grep(Function<User, Boolean> func) {
-        return container.grep(func);
+    public ArrayList<User> getByCondition(Function<User, Boolean> condition) {
+        return container.getByCondition(condition);
     }
 
 

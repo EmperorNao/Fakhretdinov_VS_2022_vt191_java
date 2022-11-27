@@ -37,13 +37,13 @@ public class ServiceContainerImpl<T extends Identifier> implements ServiceContai
     }
 
     @Override
-    public ArrayList<T> grep(Function<T, Boolean> func) {
+    public ArrayList<T> getByCondition(Function<T, Boolean> condition) {
 
         ArrayList<T> filtered_objects = new ArrayList<>();
 
         for (Long id : objects.keySet()) {
             T obj = this.objects.get(id);
-            if (func.apply(obj)) {
+            if (condition.apply(obj)) {
                 filtered_objects.add(obj);
             }
         }
