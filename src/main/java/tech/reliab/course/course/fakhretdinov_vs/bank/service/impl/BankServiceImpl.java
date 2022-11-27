@@ -51,8 +51,8 @@ public class BankServiceImpl implements BankService {
 
     @Override
     public ArrayList<Bank> read() {
-        Function<Bank, Boolean> always_true = obj -> Boolean.TRUE;
-        return container.getByCondition(always_true);
+        Function<Bank, Boolean> trueCondition = obj -> Boolean.TRUE;
+        return container.getByCondition(trueCondition);
     }
 
     @Override

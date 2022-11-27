@@ -50,8 +50,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ArrayList<User> read() {
-        Function<User, Boolean> always_true = obj -> Boolean.TRUE;
-        return container.getByCondition(always_true);
+        Function<User, Boolean> trueCondition = obj -> Boolean.TRUE;
+        return container.getByCondition(trueCondition);
     }
 
     @Override

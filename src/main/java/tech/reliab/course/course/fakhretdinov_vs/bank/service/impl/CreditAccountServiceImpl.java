@@ -64,8 +64,8 @@ public class CreditAccountServiceImpl implements CreditAccountService {
 
     @Override
     public ArrayList<CreditAccount> read() {
-        Function<CreditAccount, Boolean> always_true = obj -> Boolean.TRUE;
-        return container.getByCondition(always_true);
+        Function<CreditAccount, Boolean> trueCondition = obj -> Boolean.TRUE;
+        return container.getByCondition(trueCondition);
     }
 
     @Override

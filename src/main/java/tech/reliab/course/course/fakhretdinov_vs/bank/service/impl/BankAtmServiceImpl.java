@@ -61,8 +61,8 @@ public class BankAtmServiceImpl implements BankAtmService  {
 
     @Override
     public ArrayList<BankAtm> read() {
-        Function<BankAtm, Boolean> always_true = obj -> Boolean.TRUE;
-        return container.getByCondition(always_true);
+        Function<BankAtm, Boolean> trueCondition = obj -> Boolean.TRUE;
+        return container.getByCondition(trueCondition);
     }
 
     @Override

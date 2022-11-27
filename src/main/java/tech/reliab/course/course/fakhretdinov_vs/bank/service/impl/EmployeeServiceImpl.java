@@ -52,8 +52,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public ArrayList<Employee> read() {
-        Function<Employee, Boolean> always_true = obj -> Boolean.TRUE;
-        return container.getByCondition(always_true);
+        Function<Employee, Boolean> trueCondition = obj -> Boolean.TRUE;
+        return container.getByCondition(trueCondition);
     }
 
     @Override

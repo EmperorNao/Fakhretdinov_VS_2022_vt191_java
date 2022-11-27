@@ -47,8 +47,8 @@ public class PaymentAccountServiceImpl implements PaymentAccountService {
 
     @Override
     public ArrayList<PaymentAccount> read() {
-        Function<PaymentAccount, Boolean> always_true = obj -> Boolean.TRUE;
-        return container.getByCondition(always_true);
+        Function<PaymentAccount, Boolean> trueCondition = obj -> Boolean.TRUE;
+        return container.getByCondition(trueCondition);
     }
 
     @Override

@@ -55,8 +55,8 @@ public class BankOfficeServiceImpl implements BankOfficeService {
 
     @Override
     public ArrayList<BankOffice> read() {
-        Function<BankOffice, Boolean> always_true = obj -> Boolean.TRUE;
-        return container.getByCondition(always_true);
+        Function<BankOffice, Boolean> trueCondition = obj -> Boolean.TRUE;
+        return container.getByCondition(trueCondition);
     }
 
     @Override
