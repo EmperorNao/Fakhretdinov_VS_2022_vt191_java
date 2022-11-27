@@ -7,25 +7,16 @@ import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceManage
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.impl.core.ServiceContainerImpl;
 
 import java.time.LocalDate;
-import java.time.Period;
-import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.function.Function;
 
 public class CreditAccountServiceImpl implements CreditAccountService {
 
 
     private static Long currentMaxId = 0L;
-    private static Random randomGenerator = new Random();
-    private CreditAccount creditAccount;
-    ServiceContainer<CreditAccount> container;
+    ServiceContainer<CreditAccount> container = new ServiceContainerImpl<>();
     ServiceManager manager;
-
-    public CreditAccountServiceImpl() {
-        container = new ServiceContainerImpl();
-    }
 
     public void setServiceManager(ServiceManager manager) {
         this.manager = manager;
@@ -42,7 +33,7 @@ public class CreditAccountServiceImpl implements CreditAccountService {
 
         int duration = (int)ChronoUnit.MONTHS.between(creditStart, creditEnd);
         Long monthly_payment = amountOfMoney / duration;
-        creditAccount = new CreditAccount(
+        CreditAccount creditAccount = new CreditAccount(
                 ++currentMaxId,
                 user.getId(),
                 bank.getName(),
