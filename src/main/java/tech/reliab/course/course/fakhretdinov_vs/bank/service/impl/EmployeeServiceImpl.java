@@ -16,11 +16,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     private static Long currentMaxId = 0L;
     private static final Random randomGenerator = new Random();
     ServiceContainer<Employee> container = new ServiceContainerImpl<>();
-    ServiceManager manager;
-
-    public void setServiceManager(ServiceManager manager) {
-        this.manager = manager;
-    }
 
     @Override
     public Employee create(String fullName, String position, Bank bank, LocalDate birthDate, BankOffice office, Long salary) {
@@ -39,7 +34,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         container.update(employee);
 
         bank.setNumberOfEmployes(bank.getNumberOfEmployes() + 1);
-        manager.bankService.update(bank);
+        ServiceManager.getBankService().update(bank);
 
 
         return employee;
@@ -64,9 +59,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void delete(Employee obj) {
 
-        Bank bank = manager.bankService.get(obj.getBankId());
+        Bank bank = ServiceManager.getBankService().get(obj.getBankId());
         bank.setNumberOfEmployes(bank.getNumberOfEmployes() - 1);
-        manager.bankService.update(bank);
+        ServiceManager.getBankService().update(bank);
 
         container.delete(obj);
 

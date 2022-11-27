@@ -3,7 +3,6 @@ package tech.reliab.course.course.fakhretdinov_vs.bank.service.impl;
 import tech.reliab.course.course.fakhretdinov_vs.bank.entity.*;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.UserService;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceContainer;
-import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceManager;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.impl.core.ServiceContainerImpl;
 
 import java.time.LocalDate;
@@ -16,7 +15,6 @@ public class UserServiceImpl implements UserService {
     private static Long currentMaxId = 0L;
     private static final Random randomGenerator = new Random();
     ServiceContainer<User> container = new ServiceContainerImpl<>();
-    ServiceManager manager;
 
     @Override
     public User create(String fullName,
@@ -37,11 +35,6 @@ public class UserServiceImpl implements UserService {
 
         return user;
     }
-
-    public void setServiceManager(ServiceManager manager) {
-        this.manager = manager;
-    }
-
 
     @Override
     public User get(Long id) {

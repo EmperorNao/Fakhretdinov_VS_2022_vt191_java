@@ -13,13 +13,8 @@ public class PaymentAccountServiceImpl implements PaymentAccountService {
 
     private static Long currentMaxId = 0L;
     ServiceContainer<PaymentAccount> container = new ServiceContainerImpl<>();
-    ServiceManager manager;
 
     public PaymentAccountServiceImpl() {
-    }
-
-    public void setServiceManager(ServiceManager manager) {
-        this.manager = manager;
     }
 
     @Override
@@ -31,9 +26,9 @@ public class PaymentAccountServiceImpl implements PaymentAccountService {
                 0L
         );
 
-        if (manager.bankService.isClient(bank, user)) {
+        if (ServiceManager.getBankService().isClient(bank, user)) {
             bank.setNumberOfClients(bank.getNumberOfClients() + 1);
-            manager.bankService.update(bank);
+            ServiceManager.getBankService().update(bank);
         }
 
         container.update(paymentAccount);
@@ -61,13 +56,13 @@ public class PaymentAccountServiceImpl implements PaymentAccountService {
 
         Function<Bank, Boolean> find_bank = bank -> bank.getName().equals(obj.getBankName());
 
-        Bank bank = manager.bankService.getByCondition(find_bank).get(0);
-        User user = manager.userService.get(obj.getUserId());
+        Bank bank = ServiceManager.getBankService().getByCondition(find_bank).get(0);
+        User user = ServiceManager.getUserService().get(obj.getUserId());
 
         container.delete(obj);
-        if (manager.bankService.isClient(bank, user)) {
+        if (ServiceManager.getBankService().isClient(bank, user)) {
             bank.setNumberOfClients(bank.getNumberOfClients() - 1);
-            manager.bankService.update(bank);
+            ServiceManager.getBankService().update(bank);
         }
 
         container.delete(obj);

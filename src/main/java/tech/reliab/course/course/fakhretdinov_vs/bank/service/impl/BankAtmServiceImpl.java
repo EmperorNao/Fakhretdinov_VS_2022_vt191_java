@@ -16,11 +16,6 @@ public class BankAtmServiceImpl implements BankAtmService  {
     private static Long currentMaxId = 0L;
     private static final Random randomGenerator = new Random();
     ServiceContainer<BankAtm> container = new ServiceContainerImpl<>();
-    ServiceManager manager;
-
-    public void setServiceManager(ServiceManager manager) {
-        this.manager = manager;
-    }
 
     @Override
     public BankAtm create(String name, Bank bank, BankOffice office, Employee employee) {
@@ -45,10 +40,10 @@ public class BankAtmServiceImpl implements BankAtmService  {
         container.update(bankAtm);
 
         bank.setNumberOfAtms(bank.getNumberOfAtms() + 1);
-        manager.bankService.update(bank);
+        ServiceManager.getBankService().update(bank);
 
         office.setNumberOfAtms(office.getNumberOfAtms() + 1);
-        manager.bankOfficeService.update(office);
+        ServiceManager.getBankOfficeService().update(office);
 
         return bankAtm;
 
@@ -73,14 +68,14 @@ public class BankAtmServiceImpl implements BankAtmService  {
     @Override
     public void delete(BankAtm obj) {
 
-        Bank bank = manager.bankService.get(obj.getBankId());
+        Bank bank = ServiceManager.getBankService().get(obj.getBankId());
         bank.setNumberOfAtms(bank.getNumberOfAtms() - 1);
-        manager.bankService.update(bank);
+        ServiceManager.getBankService().update(bank);
 
         Function<BankOffice, Boolean> find_office = office -> office.getAddress().equals(obj.getAddress());
-        BankOffice office = manager.bankOfficeService.getByCondition(find_office).get(0);
+        BankOffice office = ServiceManager.getBankOfficeService().getByCondition(find_office).get(0);
         office.setNumberOfAtms(office.getNumberOfAtms() - 1);
-        manager.bankOfficeService.update(office);
+        ServiceManager.getBankOfficeService().update(office);
 
         container.delete(obj);
 

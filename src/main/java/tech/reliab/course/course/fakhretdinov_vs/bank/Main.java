@@ -11,22 +11,23 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ServiceManager manager = new ServiceManager(new BankServiceImpl(),
+        ServiceManager.initialize(
+                new BankServiceImpl(),
                 new BankAtmServiceImpl(),
                 new BankOfficeServiceImpl(),
                 new EmployeeServiceImpl(),
                 new UserServiceImpl(),
                 new CreditAccountServiceImpl(),
-                new PaymentAccountServiceImpl());
+                new PaymentAccountServiceImpl()
+        );
 
-
-        BankService bankService = manager.bankService;
-        BankAtmService atmService = manager.bankAtmService;
-        BankOfficeService bankOfficeService = manager.bankOfficeService;
-        EmployeeService employeeService = manager.employeeService;
-        UserService userService = manager.userService;
-        CreditAccountService creditAccountService = manager.creditAccountService;
-        PaymentAccountService paymentAccountService = manager.paymentAccountService;
+        BankService bankService = ServiceManager.getBankService();
+        BankAtmService atmService = ServiceManager.getBankAtmService();
+        BankOfficeService bankOfficeService = ServiceManager.getBankOfficeService();
+        EmployeeService employeeService = ServiceManager.getEmployeeService();
+        UserService userService = ServiceManager.getUserService();
+        CreditAccountService creditAccountService = ServiceManager.getCreditAccountService();
+        PaymentAccountService paymentAccountService = ServiceManager.getPaymentAccountService();
 
         var bank = bankService.create("Сбербанк");
 

@@ -16,11 +16,6 @@ public class BankOfficeServiceImpl implements BankOfficeService {
     private static Long currentMaxId = 0L;
     private static final Random randomGenerator = new Random();
     ServiceContainer<BankOffice> container = new ServiceContainerImpl<>();
-    ServiceManager manager;
-
-    public void setServiceManager(ServiceManager manager) {
-        this.manager = manager;
-    }
 
     @Override
     public BankOffice create(String name, Bank bank, String address, Long rentPrice) {
@@ -42,7 +37,7 @@ public class BankOfficeServiceImpl implements BankOfficeService {
         container.update(bankOffice);
 
         bank.setNumberOfOffices(bank.getNumberOfOffices() + 1);
-        manager.bankService.update(bank);
+        ServiceManager.getBankService().update(bank);
 
         return bankOffice;
 
@@ -67,9 +62,9 @@ public class BankOfficeServiceImpl implements BankOfficeService {
     @Override
     public void delete(BankOffice obj) {
 
-        Bank bank = manager.bankService.get(obj.getBankId());
+        Bank bank = ServiceManager.getBankService().get(obj.getBankId());
         bank.setNumberOfOffices(bank.getNumberOfOffices() - 1);
-        manager.bankService.update(bank);
+        ServiceManager.getBankService().update(bank);
 
         container.delete(obj);
 

@@ -15,11 +15,6 @@ public class BankServiceImpl implements BankService {
     private static Long currentMaxId = 0L;
     private static final Random randomGenerator = new Random();
     ServiceContainer<Bank> container = new ServiceContainerImpl<>();
-    ServiceManager manager;
-
-    public void setServiceManager(ServiceManager manager) {
-        this.manager = manager;
-    }
 
     @Override
     public Bank create(String name) {
@@ -76,8 +71,8 @@ public class BankServiceImpl implements BankService {
         Function<PaymentAccount, Boolean> check_payment_acc = acc -> acc.getBankName().equals(bank.getName());
         Function<CreditAccount, Boolean> check_credit_acc = acc -> acc.getBankName().equals(bank.getName());
 
-        ArrayList<PaymentAccount> payment_accounts = manager.paymentAccountService.getByCondition(check_payment_acc);
-        ArrayList<CreditAccount> credit_accounts = manager.creditAccountService.getByCondition(check_credit_acc);
+        ArrayList<PaymentAccount> payment_accounts = ServiceManager.getPaymentAccountService().getByCondition(check_payment_acc);
+        ArrayList<CreditAccount> credit_accounts = ServiceManager.getCreditAccountService().getByCondition(check_credit_acc);
 
         for (PaymentAccount acc: payment_accounts) {
             if (acc.getUserId().equals(user.getId())) {

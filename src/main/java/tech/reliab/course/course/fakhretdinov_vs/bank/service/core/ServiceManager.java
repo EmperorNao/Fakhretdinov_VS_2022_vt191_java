@@ -4,7 +4,19 @@ import tech.reliab.course.course.fakhretdinov_vs.bank.service.*;
 
 public class ServiceManager {
 
-    public ServiceManager(BankService bankService,
+    private static final ServiceManager instance = new ServiceManager( );
+
+    private BankService bankService;
+    private BankAtmService bankAtmService;
+    private BankOfficeService bankOfficeService;
+    private EmployeeService employeeService;
+    private UserService userService;
+    private CreditAccountService creditAccountService;
+    private PaymentAccountService paymentAccountService;
+
+    private ServiceManager() {}
+
+    public static void initialize(BankService bankService,
                           BankAtmService bankAtmService,
                           BankOfficeService bankOfficeService,
                           EmployeeService employeeService,
@@ -12,30 +24,24 @@ public class ServiceManager {
                           CreditAccountService creditAccountService,
                           PaymentAccountService paymentAccountService) {
 
-        this.bankService = bankService;
-        this.bankAtmService = bankAtmService;
-        this.bankOfficeService = bankOfficeService;
-        this.employeeService = employeeService;
-        this.userService = userService;
-        this.creditAccountService = creditAccountService;
-        this.paymentAccountService = paymentAccountService;
-
-        this.bankService.setServiceManager(this);
-        this.bankAtmService.setServiceManager(this);
-        this.bankOfficeService.setServiceManager(this);
-        this.employeeService.setServiceManager(this);
-        this.userService.setServiceManager(this);
-        this.creditAccountService.setServiceManager(this);
-        this.paymentAccountService.setServiceManager(this);
+        instance.bankService = bankService;
+        instance.bankAtmService = bankAtmService;
+        instance.bankOfficeService = bankOfficeService;
+        instance.employeeService = employeeService;
+        instance.userService = userService;
+        instance.creditAccountService = creditAccountService;
+        instance.paymentAccountService = paymentAccountService;
 
     }
 
-    public static BankService bankService;
-    public static BankAtmService bankAtmService;
-    public static BankOfficeService bankOfficeService;
-    public static EmployeeService employeeService;
-    public static UserService userService;
-    public static CreditAccountService creditAccountService;
-    public static PaymentAccountService paymentAccountService;
+    public static BankService getBankService() { return instance.bankService; }
+    public static BankAtmService getBankAtmService() { return instance.bankAtmService; }
+    public static BankOfficeService getBankOfficeService() { return instance.bankOfficeService; }
+    public static EmployeeService getEmployeeService() { return instance.employeeService; }
+    public static UserService getUserService() { return instance.userService; }
+    public static CreditAccountService getCreditAccountService() { return instance.creditAccountService; }
+    public static PaymentAccountService getPaymentAccountService() { return instance.paymentAccountService; }
+
+
 
 }
