@@ -77,7 +77,7 @@ public class BankServiceImpl implements BankService {
     }
 
     @Override
-    public Boolean isClient(Bank bank, User user) {
+    public boolean isClient(Bank bank, User user) {
 
         Function<PaymentAccount, Boolean> check_payment_acc = acc -> acc.getBankName().equals(bank.getName());
         Function<CreditAccount, Boolean> check_credit_acc = acc -> acc.getBankName().equals(bank.getName());

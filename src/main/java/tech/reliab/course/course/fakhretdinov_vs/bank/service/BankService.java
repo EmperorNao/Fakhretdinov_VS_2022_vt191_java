@@ -11,7 +11,7 @@ import java.util.Random;
 public interface BankService extends Service<Bank> {
     Bank create(String name);
 
-    public Boolean isClient(Bank bank, User user);
+    public boolean isClient(Bank bank, User user);
 
     Bank get(Long id);
 

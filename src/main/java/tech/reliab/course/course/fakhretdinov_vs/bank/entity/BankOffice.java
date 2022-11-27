@@ -7,12 +7,12 @@ public class BankOffice extends Identifier {
     private Long bankId;
     private String name;
     private String address;
-    private Boolean status;
-    private Boolean atmCanBePlaced;
+    private boolean status;
+    private boolean atmCanBePlaced;
     private int numberOfAtms;
-    private Boolean creditCanBeIssued;
-    private Boolean isPaymentingMoney;
-    private Boolean isDepositingMoney;
+    private boolean creditCanBeIssued;
+    private boolean isPaymentingMoney;
+    private boolean isDepositingMoney;
     private Long numberOfMoney;
     private Long rentPrice;
 
@@ -21,12 +21,12 @@ public class BankOffice extends Identifier {
                       Long bankId,
                       String name,
                       String address,
-                      Boolean status,
-                      Boolean atmCanBePlaced,
+                      boolean status,
+                      boolean atmCanBePlaced,
                       int numberOfAtms,
-                      Boolean creditCanBeIssued,
-                      Boolean isPaymentingMoney,
-                      Boolean isDepositingMoney,
+                      boolean creditCanBeIssued,
+                      boolean isPaymentingMoney,
+                      boolean isDepositingMoney,
                       Long numberOfMoney,
                       Long rentPrice) {
         super(id);
@@ -85,19 +85,19 @@ public class BankOffice extends Identifier {
         this.address = address;
     }
 
-    public Boolean getStatus() {
+    public boolean getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 
-    public Boolean getAtmCanBePlaced() {
+    public boolean getAtmCanBePlaced() {
         return atmCanBePlaced;
     }
 
-    public void setAtmCanBePlaced(Boolean atmCanBePlaced) {
+    public void setAtmCanBePlaced(boolean atmCanBePlaced) {
         this.atmCanBePlaced = atmCanBePlaced;
     }
 
@@ -109,27 +109,27 @@ public class BankOffice extends Identifier {
         this.numberOfAtms = numberOfAtms;
     }
 
-    public Boolean getCreditCanBeIssued() {
+    public boolean getCreditCanBeIssued() {
         return creditCanBeIssued;
     }
 
-    public void setCreditCanBeIssued(Boolean creditCanBeIssued) {
+    public void setCreditCanBeIssued(boolean creditCanBeIssued) {
         this.creditCanBeIssued = creditCanBeIssued;
     }
 
-    public Boolean getPaymentingMoney() {
+    public boolean getPaymentingMoney() {
         return isPaymentingMoney;
     }
 
-    public void setPaymentingMoney(Boolean paymentingMoney) {
+    public void setPaymentingMoney(boolean paymentingMoney) {
         isPaymentingMoney = paymentingMoney;
     }
 
-    public Boolean getDepositingMoney() {
+    public boolean getDepositingMoney() {
         return isDepositingMoney;
     }
 
-    public void setDepositingMoney(Boolean depositingMoney) {
+    public void setDepositingMoney(boolean depositingMoney) {
         isDepositingMoney = depositingMoney;
     }
 

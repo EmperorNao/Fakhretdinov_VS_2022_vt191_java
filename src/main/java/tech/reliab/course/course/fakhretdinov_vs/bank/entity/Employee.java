@@ -11,9 +11,9 @@ public class Employee extends Identifier {
     private String fullName;
     private LocalDate birthDate;
     private String position;
-    private Boolean workingInOffice;
+    private boolean workingInOffice;
     private Long bankOfficeId;
-    private Boolean creditCanBeIssued;
+    private boolean creditCanBeIssued;
     private Long salary;
 
     public Employee(Long id,
@@ -21,9 +21,9 @@ public class Employee extends Identifier {
                     String fullName,
                     LocalDate birthDate,
                     String position,
-                    Boolean workingInOffice,
+                    boolean workingInOffice,
                     Long bankOffice,
-                    Boolean creditCanBeIssued,
+                    boolean creditCanBeIssued,
                     Long salary) {
         super(id);
         this.bankId = bankId;
@@ -83,11 +83,11 @@ public class Employee extends Identifier {
         this.position = position;
     }
 
-    public Boolean getWorkingInOffice() {
+    public boolean getWorkingInOffice() {
         return workingInOffice;
     }
 
-    public void setWorkingInOffice(Boolean workingInOffice) {
+    public void setWorkingInOffice(boolean workingInOffice) {
         this.workingInOffice = workingInOffice;
     }
 
@@ -99,11 +99,11 @@ public class Employee extends Identifier {
         this.bankOfficeId = bankOfficeId;
     }
 
-    public Boolean getCreditCanBeIssued() {
+    public boolean getCreditCanBeIssued() {
         return creditCanBeIssued;
     }
 
-    public void setCreditCanBeIssued(Boolean creditCanBeIssued) {
+    public void setCreditCanBeIssued(boolean creditCanBeIssued) {
         this.creditCanBeIssued = creditCanBeIssued;
     }
 
