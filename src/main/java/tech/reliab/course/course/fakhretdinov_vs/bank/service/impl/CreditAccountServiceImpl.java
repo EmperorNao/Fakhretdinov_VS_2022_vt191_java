@@ -47,7 +47,7 @@ public class CreditAccountServiceImpl implements CreditAccountService {
                 paymentAccount.getId()
         );
 
-        if (!manager.bankService.isClient(bank, user)) {
+        if (manager.bankService.isClient(bank, user)) {
             bank.setNumberOfClients(bank.getNumberOfClients() + 1);
             manager.bankService.update(bank);
         }
@@ -82,7 +82,7 @@ public class CreditAccountServiceImpl implements CreditAccountService {
         User user = manager.userService.get(obj.getUserId());
 
         container.delete(obj);
-        if (!manager.bankService.isClient(bank, user)) {
+        if (manager.bankService.isClient(bank, user)) {
             bank.setNumberOfClients(bank.getNumberOfClients() - 1);
             manager.bankService.update(bank);
         }

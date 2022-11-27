@@ -26,12 +26,12 @@ public class Employee extends Identifier {
                     boolean creditCanBeIssued,
                     Long salary) {
         super(id);
-        this.bankId = bankId;
+        this.bankId = bank;
         this.fullName = fullName;
         this.birthDate = birthDate;
         this.position = position;
         this.workingInOffice = workingInOffice;
-        this.bankOfficeId = bankOfficeId;
+        this.bankOfficeId = bankOffice;
         this.creditCanBeIssued = creditCanBeIssued;
         this.salary = salary;
     }
@@ -56,7 +56,7 @@ public class Employee extends Identifier {
     }
 
     public void setBankId(Long bank) {
-        this.bankId = bankId;
+        this.bankId = bank;
     }
 
     public String getFullName() {

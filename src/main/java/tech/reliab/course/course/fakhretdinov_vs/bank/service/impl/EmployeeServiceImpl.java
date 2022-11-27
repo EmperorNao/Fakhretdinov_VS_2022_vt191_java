@@ -15,7 +15,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private static Long currentMaxId = 0L;
     private static final Random randomGenerator = new Random();
-    private Employee employee;
     ServiceContainer<Employee> container = new ServiceContainerImpl<>();
     ServiceManager manager;
 
@@ -26,7 +25,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee create(String fullName, String position, Bank bank, LocalDate birthDate, BankOffice office, Long salary) {
 
-        employee = new Employee (
+        Employee employee = new Employee(
                 ++currentMaxId,
                 bank.getId(),
                 fullName,

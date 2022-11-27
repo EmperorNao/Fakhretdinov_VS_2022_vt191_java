@@ -137,7 +137,7 @@ public class CreditAccount extends Identifier {
     }
 
     public void setPaymentAccountId(Long paymentAccount) {
-        this.paymentAccountId = paymentAccountId;
+        this.paymentAccountId = paymentAccount;
     }
 
 }

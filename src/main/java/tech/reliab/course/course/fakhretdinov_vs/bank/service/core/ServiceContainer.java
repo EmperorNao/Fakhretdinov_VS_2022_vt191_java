@@ -8,9 +8,9 @@ import java.util.function.Function;
 
 public interface ServiceContainer<T extends Identifier> {
 
-    public T get(Long id);
-    public void update(T model);
-    public void delete(T model);
-    public ArrayList<T> grep(Function<T, Boolean> func);
+    T get(Long id);
+    void update(T model);
+    void delete(T model);
+    ArrayList<T> grep(Function<T, Boolean> func);
 
 }

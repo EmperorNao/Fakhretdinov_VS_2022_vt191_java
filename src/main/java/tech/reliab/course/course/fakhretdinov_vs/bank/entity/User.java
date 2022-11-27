@@ -11,9 +11,6 @@ public class User extends Identifier {
     private LocalDate birthDate;
     private String placeOfWork;
     private Long monthlySalary;
-    private ArrayList<Bank> banks;
-    private ArrayList<CreditAccount> creditAccounts;
-    private ArrayList<PaymentAccount> paymentAccounts;
     private int creditRating;
 
     public User(Long id,
@@ -38,9 +35,6 @@ public class User extends Identifier {
                 ", birthDate='" + birthDate + '\'' +
                 ", placeOfWork=" + placeOfWork +
                 ", monthlySalary='" + monthlySalary + '\'' +
-                ", banks=" + banks +
-                ", creditAccounts=" + creditAccounts +
-                ", paymentAccounts=" + paymentAccounts +
                 ", creditRating=" + creditRating +
                 '}';
     }

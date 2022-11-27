@@ -7,7 +7,6 @@ import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceManage
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.impl.core.ServiceContainerImpl;
 
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.function.Function;
 
 public class PaymentAccountServiceImpl implements PaymentAccountService {
@@ -32,7 +31,7 @@ public class PaymentAccountServiceImpl implements PaymentAccountService {
                 0L
         );
 
-        if (!manager.bankService.isClient(bank, user)) {
+        if (manager.bankService.isClient(bank, user)) {
             bank.setNumberOfClients(bank.getNumberOfClients() + 1);
             manager.bankService.update(bank);
         }
@@ -66,7 +65,7 @@ public class PaymentAccountServiceImpl implements PaymentAccountService {
         User user = manager.userService.get(obj.getUserId());
 
         container.delete(obj);
-        if (!manager.bankService.isClient(bank, user)) {
+        if (manager.bankService.isClient(bank, user)) {
             bank.setNumberOfClients(bank.getNumberOfClients() - 1);
             manager.bankService.update(bank);
         }

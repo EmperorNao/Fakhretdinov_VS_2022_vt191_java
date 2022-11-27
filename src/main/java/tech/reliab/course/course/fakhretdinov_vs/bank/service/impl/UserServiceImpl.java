@@ -14,7 +14,7 @@ import java.util.function.Function;
 public class UserServiceImpl implements UserService {
 
     private static Long currentMaxId = 0L;
-    private static Random randomGenerator = new Random();
+    private static final Random randomGenerator = new Random();
     ServiceContainer<User> container = new ServiceContainerImpl<>();
     ServiceManager manager;
 

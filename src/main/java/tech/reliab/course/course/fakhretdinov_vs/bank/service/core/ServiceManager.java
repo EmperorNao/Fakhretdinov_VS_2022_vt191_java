@@ -1,7 +1,6 @@
 package tech.reliab.course.course.fakhretdinov_vs.bank.service.core;
 
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.*;
-import tech.reliab.course.course.fakhretdinov_vs.bank.service.impl.*;
 
 public class ServiceManager {
 

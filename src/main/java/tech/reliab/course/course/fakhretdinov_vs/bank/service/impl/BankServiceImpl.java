@@ -7,21 +7,15 @@ import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceManage
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.impl.core.ServiceContainerImpl;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Random;
-import java.util.Set;
 import java.util.function.Function;
 
 public class BankServiceImpl implements BankService {
 
     private static Long currentMaxId = 0L;
-    private static Random randomGenerator = new Random();
-    ServiceContainer<Bank> container;
+    private static final Random randomGenerator = new Random();
+    ServiceContainer<Bank> container = new ServiceContainerImpl<>();
     ServiceManager manager;
-
-    public BankServiceImpl() {
-        container = new ServiceContainerImpl();
-    }
 
     public void setServiceManager(ServiceManager manager) {
         this.manager = manager;
@@ -84,8 +78,6 @@ public class BankServiceImpl implements BankService {
 
         ArrayList<PaymentAccount> payment_accounts = manager.paymentAccountService.grep(check_payment_acc);
         ArrayList<CreditAccount> credit_accounts = manager.creditAccountService.grep(check_credit_acc);
-
-        HashSet<User> users = new HashSet();
 
         for (PaymentAccount acc: payment_accounts) {
             if (acc.getUserId().equals(user.getId())) {

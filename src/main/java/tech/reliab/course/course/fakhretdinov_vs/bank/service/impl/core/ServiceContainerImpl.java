@@ -10,11 +10,7 @@ import java.util.function.Function;
 
 public class ServiceContainerImpl<T extends Identifier> implements ServiceContainer<T> {
 
-    HashMap<Long, T> objects;
-
-    public ServiceContainerImpl() {
-        objects = new HashMap();
-    }
+    HashMap<Long, T> objects = new HashMap<>();
 
     @Override
     public T get(Long id) {
@@ -24,21 +20,21 @@ public class ServiceContainerImpl<T extends Identifier> implements ServiceContai
         }
         return null;
 
-    };
+    }
 
     @Override
     public void update(T obj) {
 
         objects.put(obj.getId(), obj);
 
-    };
+    }
 
     @Override
     public void delete(T obj) {
 
         objects.remove(obj.getId());
 
-    };
+    }
 
     @Override
     public ArrayList<T> grep(Function<T, Boolean> func) {
