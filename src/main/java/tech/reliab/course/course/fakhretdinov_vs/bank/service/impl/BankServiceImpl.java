@@ -20,7 +20,7 @@ public class BankServiceImpl implements BankService {
     ServiceManager manager;
 
     public BankServiceImpl() {
-        container = new ServiceContainerImpl<Bank>();
+        container = new ServiceContainerImpl();
     }
 
     public void setServiceManager(ServiceManager manager) {
@@ -85,7 +85,7 @@ public class BankServiceImpl implements BankService {
         ArrayList<PaymentAccount> payment_accounts = manager.paymentAccountService.grep(check_payment_acc);
         ArrayList<CreditAccount> credit_accounts = manager.creditAccountService.grep(check_credit_acc);
 
-        HashSet<User> users = new HashSet<User>();
+        HashSet<User> users = new HashSet();
 
         for (PaymentAccount acc: payment_accounts) {
             if (acc.getUserId().equals(user.getId())) {

@@ -24,7 +24,7 @@ public class CreditAccountServiceImpl implements CreditAccountService {
     ServiceManager manager;
 
     public CreditAccountServiceImpl() {
-        container = new ServiceContainerImpl<CreditAccount>();
+        container = new ServiceContainerImpl();
     }
 
     public void setServiceManager(ServiceManager manager) {

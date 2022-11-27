@@ -1,7 +1,6 @@
 package tech.reliab.course.course.fakhretdinov_vs.bank.service.impl;
 
 import tech.reliab.course.course.fakhretdinov_vs.bank.entity.*;
-import tech.reliab.course.course.fakhretdinov_vs.bank.service.BankService;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.PaymentAccountService;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceContainer;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceManager;
@@ -14,13 +13,10 @@ import java.util.function.Function;
 public class PaymentAccountServiceImpl implements PaymentAccountService {
 
     private static Long currentMaxId = 0L;
-    private static Random randomGenerator = new Random();
-    private PaymentAccount paymentAccount;
-    ServiceContainer<PaymentAccount> container;
+    ServiceContainer<PaymentAccount> container = new ServiceContainerImpl<>();
     ServiceManager manager;
 
     public PaymentAccountServiceImpl() {
-        container = new ServiceContainerImpl<PaymentAccount>();
     }
 
     public void setServiceManager(ServiceManager manager) {
@@ -29,7 +25,7 @@ public class PaymentAccountServiceImpl implements PaymentAccountService {
 
     @Override
     public PaymentAccount create(User user, Bank bank) {
-        paymentAccount = new PaymentAccount(
+        PaymentAccount paymentAccount = new PaymentAccount(
                 ++currentMaxId,
                 user.getId(),
                 bank.getName(),

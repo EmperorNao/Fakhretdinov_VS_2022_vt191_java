@@ -1,7 +1,6 @@
 package tech.reliab.course.course.fakhretdinov_vs.bank.service.impl;
 
 import tech.reliab.course.course.fakhretdinov_vs.bank.entity.*;
-import tech.reliab.course.course.fakhretdinov_vs.bank.service.BankService;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.UserService;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceContainer;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceManager;
@@ -16,27 +15,22 @@ public class UserServiceImpl implements UserService {
 
     private static Long currentMaxId = 0L;
     private static Random randomGenerator = new Random();
-    private User user;
-    ServiceContainer<User> container;
+    ServiceContainer<User> container = new ServiceContainerImpl<>();
     ServiceManager manager;
-    public UserServiceImpl() {
-        container = new ServiceContainerImpl<User>();
-    }
+
     @Override
     public User create(String fullName,
                        LocalDate birthdate,
                        String placeOfWork) {
 
-        Long salary = randomGenerator.nextLong(1000);
-        user = new User(
+        long salary = randomGenerator.nextLong(1000);
+
+        User user = new User(
                 ++currentMaxId,
                 fullName,
                 birthdate,
                 placeOfWork,
                 salary,
-//                new ArrayList<Bank>(),
-//                new ArrayList<CreditAccount>(),
-//                new ArrayList<PaymentAccount>(),
                 Math.toIntExact(salary / 10)
         );
         container.update(user);

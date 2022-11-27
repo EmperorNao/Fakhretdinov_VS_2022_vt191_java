@@ -1,7 +1,6 @@
 package tech.reliab.course.course.fakhretdinov_vs.bank.service.impl;
 
 import tech.reliab.course.course.fakhretdinov_vs.bank.entity.*;
-import tech.reliab.course.course.fakhretdinov_vs.bank.service.BankService;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.EmployeeService;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceContainer;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceManager;
@@ -15,13 +14,10 @@ import java.util.function.Function;
 public class EmployeeServiceImpl implements EmployeeService {
 
     private static Long currentMaxId = 0L;
-    private static Random randomGenerator = new Random();
+    private static final Random randomGenerator = new Random();
     private Employee employee;
-    ServiceContainer<Employee> container;
+    ServiceContainer<Employee> container = new ServiceContainerImpl<>();
     ServiceManager manager;
-    public EmployeeServiceImpl() {
-        container = new ServiceContainerImpl<Employee>();
-    }
 
     public void setServiceManager(ServiceManager manager) {
         this.manager = manager;

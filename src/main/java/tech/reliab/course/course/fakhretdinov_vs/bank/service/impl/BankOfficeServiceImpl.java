@@ -1,11 +1,8 @@
 package tech.reliab.course.course.fakhretdinov_vs.bank.service.impl;
 
 import tech.reliab.course.course.fakhretdinov_vs.bank.entity.Bank;
-import tech.reliab.course.course.fakhretdinov_vs.bank.entity.BankAtm;
-import tech.reliab.course.course.fakhretdinov_vs.bank.entity.BankOffice;
 import tech.reliab.course.course.fakhretdinov_vs.bank.entity.BankOffice;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.BankOfficeService;
-import tech.reliab.course.course.fakhretdinov_vs.bank.service.BankService;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceContainer;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceManager;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.impl.core.ServiceContainerImpl;
@@ -17,13 +14,9 @@ import java.util.function.Function;
 public class BankOfficeServiceImpl implements BankOfficeService {
 
     private static Long currentMaxId = 0L;
-    private static Random randomGenerator = new Random();
-    ServiceContainer<BankOffice> container;
+    private static final Random randomGenerator = new Random();
+    ServiceContainer<BankOffice> container = new ServiceContainerImpl<>();
     ServiceManager manager;
-
-    public BankOfficeServiceImpl() {
-        container = new ServiceContainerImpl<BankOffice>();
-    }
 
     public void setServiceManager(ServiceManager manager) {
         this.manager = manager;

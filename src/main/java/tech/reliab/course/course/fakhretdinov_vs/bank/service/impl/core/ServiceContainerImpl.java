@@ -13,7 +13,7 @@ public class ServiceContainerImpl<T extends Identifier> implements ServiceContai
     HashMap<Long, T> objects;
 
     public ServiceContainerImpl() {
-        objects = new HashMap<Long, T>();
+        objects = new HashMap();
     }
 
     @Override
