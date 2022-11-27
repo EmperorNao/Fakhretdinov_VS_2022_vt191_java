@@ -4,23 +4,23 @@ import tech.reliab.course.course.fakhretdinov_vs.bank.entity.core.Identifier;
 
 public class Bank extends Identifier {
     private String name;
-    private Integer numberOfOffices;
-    private Integer numberOfAtms;
-    private Integer numberOfEmployes;
-    private Integer numberOfClients;
-    private Integer bankRating;
+    private int numberOfOffices;
+    private int numberOfAtms;
+    private int numberOfEmployes;
+    private int numberOfClients;
+    private int bankRating;
     private Long amountOfMoney;
-    private Integer interestRate;
+    private int interestRate;
 
     public Bank(Long id,
                 String name,
-                Integer numberOfOffices,
-                Integer numberOfAtms,
-                Integer numberOfEmployes,
-                Integer numberOfClients,
-                Integer bankRating,
+                int numberOfOffices,
+                int numberOfAtms,
+                int numberOfEmployes,
+                int numberOfClients,
+                int bankRating,
                 Long amountOfMoney,
-                Integer interestRate) {
+                int interestRate) {
         super(id);
         this.name = name;
         this.numberOfOffices = numberOfOffices;
@@ -55,43 +55,43 @@ public class Bank extends Identifier {
         this.name = name;
     }
 
-    public Integer getNumberOfOffices() {
+    public int getNumberOfOffices() {
         return numberOfOffices;
     }
 
-    public void setNumberOfOffices(Integer numberOfOffices) {
+    public void setNumberOfOffices(int numberOfOffices) {
         this.numberOfOffices = numberOfOffices;
     }
 
-    public Integer getNumberOfAtms() {
+    public int getNumberOfAtms() {
         return numberOfAtms;
     }
 
-    public void setNumberOfAtms(Integer numberOfAtms) {
+    public void setNumberOfAtms(int numberOfAtms) {
         this.numberOfAtms = numberOfAtms;
     }
 
-    public Integer getNumberOfEmployes() {
+    public int getNumberOfEmployes() {
         return numberOfEmployes;
     }
 
-    public void setNumberOfEmployes(Integer numberOfEmployes) {
+    public void setNumberOfEmployes(int numberOfEmployes) {
         this.numberOfEmployes = numberOfEmployes;
     }
 
-    public Integer getNumberOfClients() {
+    public int getNumberOfClients() {
         return numberOfClients;
     }
 
-    public void setNumberOfClients(Integer numberOfClients) {
+    public void setNumberOfClients(int numberOfClients) {
         this.numberOfClients = numberOfClients;
     }
 
-    public Integer getBankRating() {
+    public int getBankRating() {
         return bankRating;
     }
 
-    public void setBankRating(Integer bankRating) {
+    public void setBankRating(int bankRating) {
         this.bankRating = bankRating;
     }
 
@@ -103,11 +103,11 @@ public class Bank extends Identifier {
         this.amountOfMoney = amountOfMoney;
     }
 
-    public Integer getInterestRate() {
+    public int getInterestRate() {
         return interestRate;
     }
 
-    public void setInterestRate(Integer interestRate) {
+    public void setInterestRate(int interestRate) {
         this.interestRate = interestRate;
     }
 

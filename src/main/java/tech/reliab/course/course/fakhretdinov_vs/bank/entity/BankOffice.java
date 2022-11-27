@@ -9,7 +9,7 @@ public class BankOffice extends Identifier {
     private String address;
     private Boolean status;
     private Boolean atmCanBePlaced;
-    private Integer numberOfAtms;
+    private int numberOfAtms;
     private Boolean creditCanBeIssued;
     private Boolean isPaymentingMoney;
     private Boolean isDepositingMoney;
@@ -23,7 +23,7 @@ public class BankOffice extends Identifier {
                       String address,
                       Boolean status,
                       Boolean atmCanBePlaced,
-                      Integer numberOfAtms,
+                      int numberOfAtms,
                       Boolean creditCanBeIssued,
                       Boolean isPaymentingMoney,
                       Boolean isDepositingMoney,
@@ -101,11 +101,11 @@ public class BankOffice extends Identifier {
         this.atmCanBePlaced = atmCanBePlaced;
     }
 
-    public Integer getNumberOfAtms() {
+    public int getNumberOfAtms() {
         return numberOfAtms;
     }
 
-    public void setNumberOfAtms(Integer numberOfAtms) {
+    public void setNumberOfAtms(int numberOfAtms) {
         this.numberOfAtms = numberOfAtms;
     }
 

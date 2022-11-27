@@ -14,14 +14,14 @@ public class User extends Identifier {
     private ArrayList<Bank> banks;
     private ArrayList<CreditAccount> creditAccounts;
     private ArrayList<PaymentAccount> paymentAccounts;
-    private Integer creditRating;
+    private int creditRating;
 
     public User(Long id,
                 String fullName,
                 LocalDate birthDate,
                 String placeOfWork,
                 Long monthlySalary,
-                Integer creditRating) {
+                int creditRating) {
         super(id);
         this.fullName = fullName;
         this.birthDate = birthDate;
@@ -77,11 +77,11 @@ public class User extends Identifier {
         this.monthlySalary = monthlySalary;
     }
 
-    public Integer getCreditRating() {
+    public int getCreditRating() {
         return creditRating;
     }
 
-    public void setCreditRating(Integer creditRating) {
+    public void setCreditRating(int creditRating) {
         this.creditRating = creditRating;
     }
 

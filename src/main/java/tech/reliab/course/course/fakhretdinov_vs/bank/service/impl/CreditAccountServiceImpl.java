@@ -40,7 +40,7 @@ public class CreditAccountServiceImpl implements CreditAccountService {
                                 Employee creditEmployee,
                                 PaymentAccount paymentAccount) {
 
-        Integer duration = (int)ChronoUnit.MONTHS.between(creditStart, creditEnd);
+        int duration = (int)ChronoUnit.MONTHS.between(creditStart, creditEnd);
         Long monthly_payment = amountOfMoney / duration;
         creditAccount = new CreditAccount(
                 ++currentMaxId,
