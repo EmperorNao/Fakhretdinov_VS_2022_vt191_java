@@ -13,7 +13,7 @@ import java.util.function.Function;
 
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private static Long currentMaxId = 0L;
+    private Long currentMaxId = 0L;
     private static final Random randomGenerator = new Random();
     ServiceContainer<Employee> container = new ServiceContainerImpl<>();
 
@@ -21,7 +21,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee create(String fullName, String position, Bank bank, LocalDate birthDate, BankOffice office, long salary) {
 
         Employee employee = new Employee(
-                ++currentMaxId,
+                currentMaxId++,
                 bank.getId(),
                 fullName,
                 birthDate,

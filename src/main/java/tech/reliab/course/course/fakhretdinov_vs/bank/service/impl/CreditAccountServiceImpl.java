@@ -14,7 +14,7 @@ import java.util.function.Function;
 public class CreditAccountServiceImpl implements CreditAccountService {
 
 
-    private static Long currentMaxId = 0L;
+    private Long currentMaxId = 0L;
     ServiceContainer<CreditAccount> container = new ServiceContainerImpl<>();
 
     @Override
@@ -29,7 +29,7 @@ public class CreditAccountServiceImpl implements CreditAccountService {
         int duration = (int)ChronoUnit.MONTHS.between(creditStart, creditEnd);
         long monthly_payment = amountOfMoney / duration;
         CreditAccount creditAccount = new CreditAccount(
-                ++currentMaxId,
+                currentMaxId++,
                 user.getId(),
                 bank.getName(),
                 creditStart,

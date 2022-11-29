@@ -9,7 +9,6 @@ public class BankAtm extends Identifier {
     private String name;
     private String address;
     private BankAtmStatus status;
-
     private Long serviceEmployeeId;
     private boolean isPaymentingMoney;
     private boolean isDepositingMoney;

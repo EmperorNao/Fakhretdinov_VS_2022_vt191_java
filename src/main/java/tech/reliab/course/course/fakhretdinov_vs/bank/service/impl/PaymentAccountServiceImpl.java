@@ -11,7 +11,7 @@ import java.util.function.Function;
 
 public class PaymentAccountServiceImpl implements PaymentAccountService {
 
-    private static Long currentMaxId = 0L;
+    private Long currentMaxId = 0L;
     ServiceContainer<PaymentAccount> container = new ServiceContainerImpl<>();
 
     public PaymentAccountServiceImpl() {
@@ -20,7 +20,7 @@ public class PaymentAccountServiceImpl implements PaymentAccountService {
     @Override
     public PaymentAccount create(User user, Bank bank) {
         PaymentAccount paymentAccount = new PaymentAccount(
-                ++currentMaxId,
+                currentMaxId++,
                 user.getId(),
                 bank.getName(),
                 0L

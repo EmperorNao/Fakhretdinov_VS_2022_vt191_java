@@ -13,7 +13,7 @@ import java.util.function.Function;
 
 public class BankAtmServiceImpl implements BankAtmService  {
 
-    private static Long currentMaxId = 0L;
+    private Long currentMaxId = 0L;
     private static final Random randomGenerator = new Random();
     ServiceContainer<BankAtm> container = new ServiceContainerImpl<>();
 
@@ -26,7 +26,7 @@ public class BankAtmServiceImpl implements BankAtmService  {
         }
 
         BankAtm bankAtm = new BankAtm(
-                ++currentMaxId,
+                currentMaxId++,
                 bank.getId(),
                 name,
                 office.getAddress(),

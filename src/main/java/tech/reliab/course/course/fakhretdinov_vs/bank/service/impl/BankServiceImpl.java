@@ -12,7 +12,7 @@ import java.util.function.Function;
 
 public class BankServiceImpl implements BankService {
 
-    private static Long currentMaxId = 0L;
+    private Long currentMaxId = 0L;
     private static final Random randomGenerator = new Random();
     ServiceContainer<Bank> container = new ServiceContainerImpl<>();
 
@@ -20,10 +20,10 @@ public class BankServiceImpl implements BankService {
     public Bank create(String name) {
 
         int rating = randomGenerator.nextInt(100);
-        int rate = 20 -  Math.toIntExact(Math.round(20 * (Math.min(1, rating) / 100.0)));
+        int rate = 20 -  Math.toIntExact(Math.round(20 * rating / 100.0));
         long money = randomGenerator.nextLong(1_000_000L);
         Bank bank = new Bank(
-                ++currentMaxId,
+                currentMaxId++,
                 name,
                 0,
                 0,
@@ -68,19 +68,19 @@ public class BankServiceImpl implements BankService {
     @Override
     public boolean isClient(Bank bank, User user) {
 
-        Function<PaymentAccount, Boolean> check_payment_acc = acc -> acc.getBankName().equals(bank.getName());
-        Function<CreditAccount, Boolean> check_credit_acc = acc -> acc.getBankName().equals(bank.getName());
+        Function<PaymentAccount, Boolean> checkPaymentAcc = acc -> acc.getBankName().equals(bank.getName());
+        Function<CreditAccount, Boolean> checkCreditAcc = acc -> acc.getBankName().equals(bank.getName());
 
-        ArrayList<PaymentAccount> payment_accounts = ServiceManager.getPaymentAccountService().getByCondition(check_payment_acc);
-        ArrayList<CreditAccount> credit_accounts = ServiceManager.getCreditAccountService().getByCondition(check_credit_acc);
+        ArrayList<PaymentAccount> paymentAccounts = ServiceManager.getPaymentAccountService().getByCondition(checkPaymentAcc);
+        ArrayList<CreditAccount> creditAccounts = ServiceManager.getCreditAccountService().getByCondition(checkCreditAcc);
 
-        for (PaymentAccount acc: payment_accounts) {
+        for (PaymentAccount acc: paymentAccounts) {
             if (acc.getUserId().equals(user.getId())) {
                 return Boolean.TRUE;
             }
         }
 
-        for (CreditAccount acc: credit_accounts) {
+        for (CreditAccount acc: creditAccounts) {
             if (acc.getUserId().equals(user.getId())) {
                 return Boolean.TRUE;
             }
@@ -90,5 +90,55 @@ public class BankServiceImpl implements BankService {
 
     }
 
+    public void printBankInfo(Bank bank) {
+
+        Function<BankOffice, Boolean> checkOffice = office -> office.getBankId().equals(bank.getId());
+        ArrayList<BankOffice> offices = ServiceManager.getBankOfficeService().getByCondition(checkOffice);
+
+        Function<BankAtm, Boolean> checkAtm = atm -> atm.getBankId().equals(bank.getId());
+        ArrayList<BankAtm> atms = ServiceManager.getBankAtmService().getByCondition(checkAtm);
+
+        Function<Employee, Boolean> checkEmployee = employee -> employee.getBankId().equals(bank.getId());
+        ArrayList<Employee> employees = ServiceManager.getEmployeeService().getByCondition(checkEmployee);
+
+        ArrayList<User> users = new ArrayList<>();
+        ArrayList<User> allUsers = ServiceManager.getUserService().read();
+
+        for (User user: allUsers) {
+
+            if (this.isClient(bank, user)) {
+                users.add(user);
+            }
+
+        }
+
+        System.out.println("Bank:");
+        System.out.println(bank);
+
+        System.out.println();
+        System.out.println("Offices:");
+        for (BankOffice office: offices) {
+            System.out.println(office);
+        }
+
+        System.out.println();
+        System.out.println("Atms:");
+        for (BankAtm atm: atms) {
+            System.out.println(atm);
+        }
+
+        System.out.println();
+        System.out.println("Employees:");
+        for (Employee employee: employees) {
+            System.out.println(employee);
+        }
+
+        System.out.println();
+        System.out.println("Users:");
+        for (User user: users) {
+            System.out.println(user);
+        }
+
+    }
 
 }

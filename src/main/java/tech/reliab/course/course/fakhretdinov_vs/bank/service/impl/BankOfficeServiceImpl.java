@@ -13,7 +13,7 @@ import java.util.function.Function;
 
 public class BankOfficeServiceImpl implements BankOfficeService {
 
-    private static Long currentMaxId = 0L;
+    private Long currentMaxId = 0L;
     private static final Random randomGenerator = new Random();
     ServiceContainer<BankOffice> container = new ServiceContainerImpl<>();
 
@@ -21,7 +21,7 @@ public class BankOfficeServiceImpl implements BankOfficeService {
     public BankOffice create(String name, Bank bank, String address, long rentPrice) {
 
         BankOffice bankOffice = new BankOffice(
-                ++currentMaxId,
+                currentMaxId++,
                 bank.getId(),
                 name,
                 address,
