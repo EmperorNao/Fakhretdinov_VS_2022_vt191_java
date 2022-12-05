@@ -27,7 +27,7 @@ public class CreditAccountServiceImpl implements CreditAccountService {
                                 PaymentAccount paymentAccount) {
 
         int duration = (int)ChronoUnit.MONTHS.between(creditStart, creditEnd);
-        long monthly_payment = amountOfMoney / duration;
+        long monthlyPayment = amountOfMoney / duration;
         CreditAccount creditAccount = new CreditAccount(
                 currentMaxId++,
                 user.getId(),
@@ -36,7 +36,7 @@ public class CreditAccountServiceImpl implements CreditAccountService {
                 creditEnd,
                 duration,
                 amountOfMoney,
-                monthly_payment,
+                monthlyPayment,
                 bank.getInterestRate(),
                 creditEmployee.getId(),
                 paymentAccount.getId()
@@ -71,9 +71,9 @@ public class CreditAccountServiceImpl implements CreditAccountService {
     @Override
     public void delete(CreditAccount obj) {
 
-        Function<Bank, Boolean> find_bank = bank -> bank.getName().equals(obj.getBankName());
+        Function<Bank, Boolean> findBank = bank -> bank.getName().equals(obj.getBankName());
 
-        Bank bank = ServiceManager.getBankService().getByCondition(find_bank).get(0);
+        Bank bank = ServiceManager.getBankService().getByCondition(findBank).get(0);
         User user = ServiceManager.getUserService().get(obj.getUserId());
 
         container.delete(obj);

@@ -72,8 +72,8 @@ public class BankAtmServiceImpl implements BankAtmService  {
         bank.setNumberOfAtms(bank.getNumberOfAtms() - 1);
         ServiceManager.getBankService().update(bank);
 
-        Function<BankOffice, Boolean> find_office = office -> office.getAddress().equals(obj.getAddress());
-        BankOffice office = ServiceManager.getBankOfficeService().getByCondition(find_office).get(0);
+        Function<BankOffice, Boolean> findOffice = office -> office.getAddress().equals(obj.getAddress());
+        BankOffice office = ServiceManager.getBankOfficeService().getByCondition(findOffice).get(0);
         office.setNumberOfAtms(office.getNumberOfAtms() - 1);
         ServiceManager.getBankOfficeService().update(office);
 

@@ -40,16 +40,16 @@ public class ServiceContainerImpl<T extends Identifier> implements ServiceContai
     @Override
     public ArrayList<T> getByCondition(Function<T, Boolean> condition) {
 
-        ArrayList<T> filtered_objects = new ArrayList<>();
+        ArrayList<T> filteredObjects = new ArrayList<>();
 
         for (Long id : objects.keySet()) {
             T obj = this.objects.get(id);
             if (condition.apply(obj)) {
-                filtered_objects.add(obj);
+                filteredObjects.add(obj);
             }
         }
 
-        return filtered_objects;
+        return filteredObjects;
 
     }
 

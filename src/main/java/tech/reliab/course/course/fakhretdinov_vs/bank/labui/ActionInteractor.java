@@ -9,12 +9,13 @@ import java.util.Scanner;
 
 public class ActionInteractor {
 
-    public void start(int current_max_lab) {
+
+    public void start() {
 
         Scanner input = new Scanner(System.in);
 
-        String outputString = "Введите номер лабораторной работы для запуска [1 - %d], 0 для завершения";
-        outputString = String.format(outputString, current_max_lab);
+        String outputString = "Введите номер лабораторной работы для запуска [1 - 2], 0 для завершения";
+        outputString = String.format(outputString);
 
         int labIndex = -1;
         while (labIndex != 0) {

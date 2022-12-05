@@ -54,9 +54,9 @@ public class PaymentAccountServiceImpl implements PaymentAccountService {
     @Override
     public void delete(PaymentAccount obj) {
 
-        Function<Bank, Boolean> find_bank = bank -> bank.getName().equals(obj.getBankName());
+        Function<Bank, Boolean> findBank = bank -> bank.getName().equals(obj.getBankName());
 
-        Bank bank = ServiceManager.getBankService().getByCondition(find_bank).get(0);
+        Bank bank = ServiceManager.getBankService().getByCondition(findBank).get(0);
         User user = ServiceManager.getUserService().get(obj.getUserId());
 
         container.delete(obj);
