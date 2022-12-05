@@ -12,7 +12,7 @@ public class CreditAccount extends Identifier {
     private LocalDate creditStart;
     private LocalDate creditEnd;
     private int numberOfMonths;
-    private long amountOfMoney;
+    private long numberOfMoney;
     private long monthlyPayment;
     private int interestRate;
     private long creditEmployeeId;
@@ -25,7 +25,7 @@ public class CreditAccount extends Identifier {
                          LocalDate creditStart,
                          LocalDate creditEnd,
                          int numberOfMonths,
-                         long amountOfMoney,
+                         long numberOfMoney,
                          long monthlyPayment,
                          int interestRate,
                          long creditEmployee,
@@ -36,7 +36,7 @@ public class CreditAccount extends Identifier {
         this.creditStart = creditStart;
         this.creditEnd = creditEnd;
         this.numberOfMonths = numberOfMonths;
-        this.amountOfMoney = amountOfMoney;
+        this.numberOfMoney = numberOfMoney;
         this.monthlyPayment = monthlyPayment;
         this.interestRate = interestRate;
         this.creditEmployeeId = creditEmployee;
@@ -52,7 +52,7 @@ public class CreditAccount extends Identifier {
                 ", creditStart=" + creditStart +
                 ", creditEnd=" + creditEnd +
                 ", numberOfMonths=" + numberOfMonths +
-                ", amountOfMoney=" + amountOfMoney +
+                ", numberOfMoney=" + numberOfMoney +
                 ", monthlyPayment=" + monthlyPayment +
                 ", interestRate=" + interestRate +
                 ", creditEmployeeId=" + creditEmployeeId +
@@ -100,12 +100,12 @@ public class CreditAccount extends Identifier {
         this.numberOfMonths = numberOfMonths;
     }
 
-    public long getAmountOfMoney() {
-        return amountOfMoney;
+    public long getNumberOfMoney() {
+        return numberOfMoney;
     }
 
-    public void setAmountOfMoney(long amountOfMoney) {
-        this.amountOfMoney = amountOfMoney;
+    public void setNumberOfMoney(long numberOfMoney) {
+        this.numberOfMoney = numberOfMoney;
     }
 
     public long getMonthlyPayment() {

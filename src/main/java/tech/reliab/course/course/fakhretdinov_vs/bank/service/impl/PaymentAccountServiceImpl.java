@@ -4,6 +4,7 @@ import tech.reliab.course.course.fakhretdinov_vs.bank.entity.*;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.PaymentAccountService;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceContainer;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceManager;
+import tech.reliab.course.course.fakhretdinov_vs.bank.service.exceptions.WrongIdentifierHandlingException;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.impl.core.ServiceContainerImpl;
 
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ public class PaymentAccountServiceImpl implements PaymentAccountService {
     }
 
     @Override
-    public PaymentAccount get(Long id) {
+    public PaymentAccount get(Long id) throws WrongIdentifierHandlingException {
         return container.get(id);
     }
 
@@ -52,7 +53,7 @@ public class PaymentAccountServiceImpl implements PaymentAccountService {
     }
 
     @Override
-    public void delete(PaymentAccount obj) {
+    public void delete(PaymentAccount obj) throws WrongIdentifierHandlingException {
 
         Function<Bank, Boolean> findBank = bank -> bank.getName().equals(obj.getBankName());
 

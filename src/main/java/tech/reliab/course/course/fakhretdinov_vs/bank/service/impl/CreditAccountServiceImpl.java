@@ -4,6 +4,7 @@ import tech.reliab.course.course.fakhretdinov_vs.bank.entity.*;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.CreditAccountService;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceContainer;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceManager;
+import tech.reliab.course.course.fakhretdinov_vs.bank.service.exceptions.WrongIdentifierHandlingException;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.impl.core.ServiceContainerImpl;
 
 import java.time.LocalDate;
@@ -22,12 +23,12 @@ public class CreditAccountServiceImpl implements CreditAccountService {
                                 Bank bank,
                                 LocalDate creditStart,
                                 LocalDate creditEnd,
-                                long amountOfMoney,
+                                long numberOfMoney,
                                 Employee creditEmployee,
                                 PaymentAccount paymentAccount) {
 
         int duration = (int)ChronoUnit.MONTHS.between(creditStart, creditEnd);
-        long monthlyPayment = amountOfMoney / duration;
+        long monthlyPayment = numberOfMoney / duration;
         CreditAccount creditAccount = new CreditAccount(
                 currentMaxId++,
                 user.getId(),
@@ -35,7 +36,7 @@ public class CreditAccountServiceImpl implements CreditAccountService {
                 creditStart,
                 creditEnd,
                 duration,
-                amountOfMoney,
+                numberOfMoney,
                 monthlyPayment,
                 bank.getInterestRate(),
                 creditEmployee.getId(),
@@ -53,7 +54,7 @@ public class CreditAccountServiceImpl implements CreditAccountService {
     }
 
     @Override
-    public CreditAccount get(Long id) {
+    public CreditAccount get(Long id) throws WrongIdentifierHandlingException {
         return container.get(id);
     }
 
@@ -69,7 +70,7 @@ public class CreditAccountServiceImpl implements CreditAccountService {
     }
 
     @Override
-    public void delete(CreditAccount obj) {
+    public void delete(CreditAccount obj) throws WrongIdentifierHandlingException {
 
         Function<Bank, Boolean> findBank = bank -> bank.getName().equals(obj.getBankName());
 

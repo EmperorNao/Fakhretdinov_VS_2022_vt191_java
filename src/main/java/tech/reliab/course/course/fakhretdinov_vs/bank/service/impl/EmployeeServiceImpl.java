@@ -4,6 +4,7 @@ import tech.reliab.course.course.fakhretdinov_vs.bank.entity.*;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.EmployeeService;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceContainer;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceManager;
+import tech.reliab.course.course.fakhretdinov_vs.bank.service.exceptions.WrongIdentifierHandlingException;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.impl.core.ServiceContainerImpl;
 
 import java.time.LocalDate;
@@ -41,7 +42,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee get(Long id) {
+    public Employee get(Long id) throws WrongIdentifierHandlingException {
         return container.get(id);
     }
 
@@ -57,7 +58,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void delete(Employee obj) {
+    public void delete(Employee obj) throws WrongIdentifierHandlingException {
 
         Bank bank = ServiceManager.getBankService().get(obj.getBankId());
         bank.setNumberOfEmployes(bank.getNumberOfEmployes() - 1);

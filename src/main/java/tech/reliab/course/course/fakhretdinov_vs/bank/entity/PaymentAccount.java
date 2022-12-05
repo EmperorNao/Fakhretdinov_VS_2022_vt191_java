@@ -6,13 +6,13 @@ public class PaymentAccount extends Identifier {
 
     private Long userId;
     private String bankName;
-    private long amountOfMoney;
+    private long numberOfMoney;
 
-    public PaymentAccount(Long id, Long userId, String bankName, Long amountOfMoney) {
+    public PaymentAccount(Long id, Long userId, String bankName, Long numberOfMoney) {
         super(id);
         this.userId = userId;
         this.bankName = bankName;
-        this.amountOfMoney = amountOfMoney;
+        this.numberOfMoney = numberOfMoney;
     }
 
     @Override
@@ -21,7 +21,7 @@ public class PaymentAccount extends Identifier {
                 "id=" + getId() +
                 ", userId=" + userId +
                 ", bankName='" + bankName + '\'' +
-                ", amountOfMoney=" + amountOfMoney +
+                ", numberOfMoney=" + numberOfMoney +
                 '}';
     }
 
@@ -41,12 +41,12 @@ public class PaymentAccount extends Identifier {
         this.bankName = bankName;
     }
 
-    public long getAmountOfMoney() {
-        return amountOfMoney;
+    public long getNumberOfMoney() {
+        return numberOfMoney;
     }
 
-    public void setAmountOfMoney(Long amountOfMoney) {
-        this.amountOfMoney = amountOfMoney;
+    public void setNumberOfMoney(Long numberOfMoney) {
+        this.numberOfMoney = numberOfMoney;
     }
 
 }

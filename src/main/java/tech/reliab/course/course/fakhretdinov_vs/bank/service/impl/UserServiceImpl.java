@@ -4,6 +4,7 @@ import tech.reliab.course.course.fakhretdinov_vs.bank.entity.*;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.UserService;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceContainer;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceManager;
+import tech.reliab.course.course.fakhretdinov_vs.bank.service.exceptions.WrongIdentifierHandlingException;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.impl.core.ServiceContainerImpl;
 
 import java.time.LocalDate;
@@ -38,7 +39,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User get(Long id) {
+    public User get(Long id) throws WrongIdentifierHandlingException {
         return container.get(id);
     }
 

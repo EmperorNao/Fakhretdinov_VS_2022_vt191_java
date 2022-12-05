@@ -5,6 +5,7 @@ import tech.reliab.course.course.fakhretdinov_vs.bank.entity.BankOffice;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.BankOfficeService;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceContainer;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceManager;
+import tech.reliab.course.course.fakhretdinov_vs.bank.service.exceptions.WrongIdentifierHandlingException;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.impl.core.ServiceContainerImpl;
 
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class BankOfficeServiceImpl implements BankOfficeService {
                 randomGenerator.nextBoolean(),
                 randomGenerator.nextBoolean(),
                 randomGenerator.nextBoolean(),
-                bank.getAmountOfMoney(),
+                bank.getNumberOfMoney(),
                 rentPrice
         );
         container.update(bankOffice);
@@ -44,7 +45,7 @@ public class BankOfficeServiceImpl implements BankOfficeService {
     }
 
     @Override
-    public BankOffice get(Long id) {
+    public BankOffice get(Long id) throws WrongIdentifierHandlingException {
         return container.get(id);
     }
 
@@ -60,7 +61,7 @@ public class BankOfficeServiceImpl implements BankOfficeService {
     }
 
     @Override
-    public void delete(BankOffice obj) {
+    public void delete(BankOffice obj) throws WrongIdentifierHandlingException {
 
         Bank bank = ServiceManager.getBankService().get(obj.getBankId());
         bank.setNumberOfOffices(bank.getNumberOfOffices() - 1);

@@ -2,14 +2,14 @@ package tech.reliab.course.course.fakhretdinov_vs.bank.entity;
 
 import tech.reliab.course.course.fakhretdinov_vs.bank.entity.core.Identifier;
 
-public class Bank extends Identifier {
+public class Bank extends Identifier implements Comparable<Bank> {
     private String name;
     private int numberOfOffices;
     private int numberOfAtms;
     private int numberOfEmployes;
     private int numberOfClients;
     private int bankRating;
-    private long amountOfMoney;
+    private long numberOfMoney;
     private int interestRate;
 
     public Bank(Long id,
@@ -19,7 +19,7 @@ public class Bank extends Identifier {
                 int numberOfEmployes,
                 int numberOfClients,
                 int bankRating,
-                long amountOfMoney,
+                long numberOfMoney,
                 int interestRate) {
         super(id);
         this.name = name;
@@ -28,7 +28,7 @@ public class Bank extends Identifier {
         this.numberOfEmployes = numberOfEmployes;
         this.numberOfClients = numberOfClients;
         this.bankRating = bankRating;
-        this.amountOfMoney = amountOfMoney;
+        this.numberOfMoney = numberOfMoney;
         this.interestRate = interestRate;
     }
 
@@ -42,7 +42,7 @@ public class Bank extends Identifier {
                 ", numberOfEmployes=" + numberOfEmployes +
                 ", numberOfClients=" + numberOfClients +
                 ", bankRating=" + bankRating +
-                ", amountOfMoney=" + amountOfMoney +
+                ", numberOfMoney=" + numberOfMoney +
                 ", interestRate=" + interestRate +
                 '}';
     }
@@ -95,12 +95,12 @@ public class Bank extends Identifier {
         this.bankRating = bankRating;
     }
 
-    public long getAmountOfMoney() {
-        return amountOfMoney;
+    public long getNumberOfMoney() {
+        return numberOfMoney;
     }
 
-    public void setAmountOfMoney(long amountOfMoney) {
-        this.amountOfMoney = amountOfMoney;
+    public void setNumberOfMoney(long numberOfMoney) {
+        this.numberOfMoney = numberOfMoney;
     }
 
     public int getInterestRate() {
@@ -111,6 +111,47 @@ public class Bank extends Identifier {
         this.interestRate = interestRate;
     }
 
+    @Override
+    public int compareTo(Bank right) {
+
+        if (this.getInterestRate() > right.getInterestRate()) {
+            return 1;
+        }
+        else if (this.getInterestRate() < right.getInterestRate()) {
+            return -1;
+        }
+
+        if (this.getNumberOfOffices() > right.getNumberOfOffices()) {
+            return 1;
+        }
+        else if (this.getNumberOfOffices() < right.getNumberOfOffices()) {
+            return -1;
+        }
+
+        if (this.getNumberOfAtms() > right.getNumberOfAtms()) {
+            return 1;
+        }
+        else if (this.getNumberOfAtms() < right.getNumberOfAtms()) {
+            return -1;
+        }
+
+        if (this.getNumberOfEmployes() > right.getNumberOfEmployes()) {
+            return 1;
+        }
+        else if (this.getNumberOfEmployes() < right.getNumberOfEmployes()) {
+            return -1;
+        }
+
+        if (this.getNumberOfClients() > right.getNumberOfClients()) {
+            return 1;
+        }
+        else if (this.getNumberOfClients() < right.getNumberOfClients()) {
+            return -1;
+        }
+
+        return 0;
+
+    }
 }
 
 

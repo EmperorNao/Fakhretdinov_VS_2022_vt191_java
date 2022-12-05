@@ -5,6 +5,7 @@ import tech.reliab.course.course.fakhretdinov_vs.bank.entity.enums.BankAtmStatus
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.BankAtmService;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceContainer;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceManager;
+import tech.reliab.course.course.fakhretdinov_vs.bank.service.exceptions.WrongIdentifierHandlingException;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.impl.core.ServiceContainerImpl;
 
 import java.util.ArrayList;
@@ -22,7 +23,6 @@ public class BankAtmServiceImpl implements BankAtmService  {
 
         if (!office.getAtmCanBePlaced()) {
             return null;
-            //TODO throw exception
         }
 
         BankAtm bankAtm = new BankAtm(
@@ -34,7 +34,7 @@ public class BankAtmServiceImpl implements BankAtmService  {
                 employee.getId(),
                 randomGenerator.nextBoolean(),
                 randomGenerator.nextBoolean(),
-                bank.getAmountOfMoney(),
+                bank.getNumberOfMoney(),
                 randomGenerator.nextInt(6666)
         );
         container.update(bankAtm);
@@ -50,7 +50,7 @@ public class BankAtmServiceImpl implements BankAtmService  {
     }
 
     @Override
-    public BankAtm get(Long id) {
+    public BankAtm get(Long id) throws WrongIdentifierHandlingException {
         return container.get(id);
     }
 
@@ -66,7 +66,7 @@ public class BankAtmServiceImpl implements BankAtmService  {
     }
 
     @Override
-    public void delete(BankAtm obj) {
+    public void delete(BankAtm obj) throws WrongIdentifierHandlingException {
 
         Bank bank = ServiceManager.getBankService().get(obj.getBankId());
         bank.setNumberOfAtms(bank.getNumberOfAtms() - 1);
