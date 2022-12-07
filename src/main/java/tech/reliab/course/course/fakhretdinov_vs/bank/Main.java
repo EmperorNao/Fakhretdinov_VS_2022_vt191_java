@@ -1,6 +1,5 @@
 package tech.reliab.course.course.fakhretdinov_vs.bank;
 
-
 import tech.reliab.course.course.fakhretdinov_vs.bank.labui.ActionInteractor;
 
 public class Main {
