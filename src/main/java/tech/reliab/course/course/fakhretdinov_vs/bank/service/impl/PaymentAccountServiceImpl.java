@@ -61,7 +61,7 @@ public class PaymentAccountServiceImpl implements PaymentAccountService {
         User user = ServiceManager.getUserService().get(obj.getUserId());
 
         container.delete(obj);
-        if (ServiceManager.getBankService().isClient(bank, user)) {
+        if (!ServiceManager.getBankService().isClient(bank, user)) {
             bank.setNumberOfClients(bank.getNumberOfClients() - 1);
             ServiceManager.getBankService().update(bank);
         }
