@@ -361,5 +361,38 @@ public class BankServiceImpl implements BankService {
 
     }
 
+    @Override
+    public void transferAccounts(ArrayList<PaymentAccount> paymentAccounts, Long bankId) throws WrongIdentifierHandlingException {
+
+        Bank newBank = this.get(bankId);
+
+        for (PaymentAccount paymentAccount: paymentAccounts) {
+            if (paymentAccount.getBankName().equals(newBank.getName())) {
+                continue;
+            }
+
+            Function<Bank, Boolean> condition = bank -> bank.getName().equals(paymentAccount.getBankName());
+
+            Bank currentBank = ServiceManager.getBankService().getByCondition(condition).get(0);
+            User user = ServiceManager.getUserService().get(paymentAccount.getUserId());
+
+            paymentAccount.setBankName(newBank.getName());
+
+            if (!ServiceManager.getBankService().isClient(newBank, user)) {
+                newBank.setNumberOfClients(newBank.getNumberOfClients() + 1);
+                ServiceManager.getBankService().update(newBank);
+            }
+
+            ServiceManager.getPaymentAccountService().update(paymentAccount);
+
+            if (!ServiceManager.getBankService().isClient(currentBank, user)) {
+                currentBank.setNumberOfClients(currentBank.getNumberOfClients() - 1);
+                ServiceManager.getBankService().update(currentBank);
+            }
+
+        }
+
+    }
+
 
 }
