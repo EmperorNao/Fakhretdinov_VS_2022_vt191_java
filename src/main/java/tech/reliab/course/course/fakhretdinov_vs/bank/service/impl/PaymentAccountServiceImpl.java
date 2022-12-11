@@ -7,6 +7,7 @@ import tech.reliab.course.course.fakhretdinov_vs.bank.service.core.ServiceManage
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.exceptions.WrongIdentifierHandlingException;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.impl.core.ServiceContainerImpl;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.function.Function;
 
@@ -46,6 +47,37 @@ public class PaymentAccountServiceImpl implements PaymentAccountService {
         Function<PaymentAccount, Boolean> trueCondition = obj -> Boolean.TRUE;
         return container.getByCondition(trueCondition);
     }
+
+    @Override
+    public void writeToFile(ArrayList<PaymentAccount> paymentAccounts, String fileName) throws WrongIdentifierHandlingException, IOException {
+
+        int numberOfAccounts = paymentAccounts.size();
+
+        FileOutputStream fileOutputStream = new FileOutputStream(fileName);
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+        //objectOutputStream.write(numberOfAccounts);
+
+//        for (PaymentAccount paymentAccount: paymentAccounts) {
+//            objectOutputStream.writeObject(paymentAccount);
+//        }
+
+        objectOutputStream.writeObject(paymentAccounts);
+        objectOutputStream.flush();
+        objectOutputStream.close();
+
+    }
+
+    @Override
+    public ArrayList<PaymentAccount> readFromFile(String fileName) throws IOException, ClassNotFoundException {
+
+        ObjectInputStream in=new ObjectInputStream(new FileInputStream(fileName));
+        ArrayList<PaymentAccount> paymentAccounts = (ArrayList<PaymentAccount>)in.readObject();
+        in.close();
+
+        return paymentAccounts;
+
+    }
+
 
     @Override
     public void update(PaymentAccount obj) {
