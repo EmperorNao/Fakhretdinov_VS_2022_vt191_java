@@ -1,7 +1,9 @@
 package tech.reliab.course.course.fakhretdinov_vs.bank.entity.core;
 
 
-public class Identifier {
+import java.io.Serializable;
+
+public class Identifier implements Serializable {
 
     private final long id;
 

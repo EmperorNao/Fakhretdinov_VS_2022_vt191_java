@@ -2,7 +2,9 @@ package tech.reliab.course.course.fakhretdinov_vs.bank.entity;
 
 import tech.reliab.course.course.fakhretdinov_vs.bank.entity.core.Identifier;
 
-public class PaymentAccount extends Identifier {
+import java.io.Serializable;
+
+public class PaymentAccount extends Identifier implements Serializable {
 
     private Long userId;
     private String bankName;
