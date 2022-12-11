@@ -7,8 +7,10 @@ import tech.reliab.course.course.fakhretdinov_vs.bank.service.exceptions.WrongId
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.exceptions.WrongRequestException;
 import tech.reliab.course.course.fakhretdinov_vs.bank.service.impl.*;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.function.Function;
 
 public class ActionInteractor {
 
@@ -17,7 +19,7 @@ public class ActionInteractor {
 
         Scanner input = new Scanner(System.in);
 
-        String outputString = "Введите номер лабораторной работы для запуска [1 - 3], 0 для завершения";
+        String outputString = "Введите номер лабораторной работы для запуска [1 - 4], 0 для завершения";
         outputString = String.format(outputString);
 
         int labIndex = -1;
@@ -36,6 +38,9 @@ public class ActionInteractor {
                     break;
                 case 3:
                     this.lab3();
+                    break;
+                case 4:
+                    this.lab4();
                     break;
                 default:
                     System.out.println("Введён неверный номер");
@@ -335,7 +340,152 @@ public class ActionInteractor {
 
         }
 
+    }
 
+
+    public void lab4() {
+
+        labPreparation();
+        ObjectsCreator.createObjects(10, 5, 5, 5, 5, 2, 2);
+
+        Scanner input = new Scanner(System.in);
+
+        Long bankId;
+        Long paymentAccountId;
+        Long userId;
+        String fileName;
+        ArrayList<PaymentAccount> paymentAccounts = new ArrayList<>();
+
+        int actionIndex = -1;
+        while (actionIndex != 0) {
+            System.out.println(
+                    """
+                            Выберите одно из действий:
+                            1 - Посмотреть список банков
+                            2 - Посмотреть список всех клиентов
+                            3 - Вывести информацию о банке по id
+                            4 - Вывести информацию о клиенте по id
+                            5 - Вывести платёжный счёт по id в файл
+                            6 - Вывести все платёжные счета клиента по id в файл
+                            7 - Перевести все платёжные счета из файла в другой банк по id
+                            0 - Выйти
+                            """
+            );
+            actionIndex = input.nextInt();
+
+            long objectId;
+            switch (actionIndex) {
+
+                case 0:
+                    break;
+
+                case 1:
+                    System.out.println("Список банков: ");
+
+                    ArrayList<Bank> banks = ServiceManager.getBankService().read();
+                    for (Bank bank: banks) {
+                        System.out.println(bank);
+                    }
+                    break;
+
+                case 2:
+                    System.out.println("Список клиентов: ");
+
+                    ArrayList<User> users = ServiceManager.getUserService().read();
+                    for (User user: users) {
+                        System.out.println(user);
+                    }
+                    break;
+
+                case 3:
+                    System.out.println("Введите id банка для просмотра");
+                    objectId = input.nextLong();
+                    try {
+                        System.out.println("Информация о банке: ");
+                        ServiceManager.getBankService().printBankInfo(ServiceManager.getBankService().get(objectId));
+                    }
+                    catch (WrongIdentifierHandlingException e) {
+                        System.out.println("Не удалось посмотреть информацию, введите корректный объект: " + e);
+                    }
+                    break;
+
+                case 4:
+                    System.out.println("Введите id клиента для просмотра");
+                    objectId = input.nextLong();
+                    try {
+                        System.out.println("Информация о клиенте");
+                        ServiceManager.getUserService().printUserInfo(ServiceManager.getUserService().get(objectId));
+                    }
+                    catch (WrongIdentifierHandlingException e) {
+                        System.out.println("Не удалось посмотреть информацию, введите корректный объект: " + e);
+                    }
+                    break;
+
+                case 5:
+                    System.out.println("Введите id платёжного счёта для записи в файл");
+                    paymentAccountId = input.nextLong();
+
+                    System.out.println("Введите путь файла для записи");
+                    fileName = input.next();
+
+                    try {
+                        paymentAccounts.add(ServiceManager.getPaymentAccountService().get(paymentAccountId));
+                        ServiceManager.getPaymentAccountService().writeToFile(paymentAccounts, fileName);
+                    }
+                    catch (IOException e) {
+                        System.out.println("Ошибка ввода: " + e);
+                    } catch (WrongIdentifierHandlingException e) {
+                        System.out.println("Платёжного аккаунта с введённым вами идентификатором не существует: " + e);
+                    }
+                    break;
+
+                case 6:
+                    System.out.println("Введите id клиента");
+                    userId = input.nextLong();
+
+                    System.out.println("Введите путь файла для записи");
+                    fileName = input.next();
+
+                    Long finalUserId = userId;
+                    Function<PaymentAccount, Boolean> condition = paymentAccount -> paymentAccount.getUserId().equals(finalUserId);
+                    paymentAccounts = ServiceManager.getPaymentAccountService().getByCondition(condition);
+
+                    try {
+                        ServiceManager.getPaymentAccountService().writeToFile(paymentAccounts, fileName);
+                    }
+                    catch (IOException e) {
+                        System.out.println("Ошибка ввода: " + e);
+                    } catch (WrongIdentifierHandlingException e) {
+                        System.out.println("Платёжного аккаунта с введённым вами идентификатором не существует: " + e);
+                    }
+                    break;
+
+                case 7:
+                    System.out.println("Введите id банка");
+                    bankId = input.nextLong();
+
+                    System.out.println("Введите путь файла из которого брать аккаунты");
+                    fileName = input.next();
+                    try {
+                        paymentAccounts = ServiceManager.getPaymentAccountService().readFromFile(fileName);
+                    } catch (IOException e) {
+                        System.out.println("Ошибка ввода: " + e);
+                    } catch (ClassNotFoundException e) {
+                        System.out.println("Введёный файл имеет некорректно содержимое: " + e);
+                    }
+
+                    try {
+                        ServiceManager.getBankService().transferAccounts(paymentAccounts, bankId);
+                    } catch (WrongIdentifierHandlingException e) {
+                        System.out.println("Введёный файл имеет некорректно содержимое, несуществующий идентификатор: " + e);
+                    }
+                    break;
+
+                default:
+                    System.out.println("Введён неверный номер");
+            }
+
+        }
 
     }
 
