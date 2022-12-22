@@ -49,30 +49,27 @@ public class PaymentAccountServiceImpl implements PaymentAccountService {
     }
 
     @Override
-    public void writeToFile(ArrayList<PaymentAccount> paymentAccounts, String fileName) throws WrongIdentifierHandlingException, IOException {
+    public void writeToFile(ArrayList<PaymentAccount> paymentAccounts, String fileName) throws IOException {
 
-        int numberOfAccounts = paymentAccounts.size();
+        try (FileOutputStream fileOutputStream = new FileOutputStream(fileName);
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
 
-        FileOutputStream fileOutputStream = new FileOutputStream(fileName);
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-        //objectOutputStream.write(numberOfAccounts);
+            objectOutputStream.writeObject(paymentAccounts);
+            objectOutputStream.flush();
 
-//        for (PaymentAccount paymentAccount: paymentAccounts) {
-//            objectOutputStream.writeObject(paymentAccount);
-//        }
-
-        objectOutputStream.writeObject(paymentAccounts);
-        objectOutputStream.flush();
-        objectOutputStream.close();
+        }
 
     }
 
     @Override
     public ArrayList<PaymentAccount> readFromFile(String fileName) throws IOException, ClassNotFoundException {
 
-        ObjectInputStream in=new ObjectInputStream(new FileInputStream(fileName));
-        ArrayList<PaymentAccount> paymentAccounts = (ArrayList<PaymentAccount>)in.readObject();
-        in.close();
+        ArrayList<PaymentAccount> paymentAccounts;
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName))) {
+
+            paymentAccounts = (ArrayList<PaymentAccount>)in.readObject();
+
+        }
 
         return paymentAccounts;
 
