@@ -20,7 +20,7 @@ public interface BankService extends Service<Bank> {
 
     void printBankInfo(Bank bank);
 
-    CreditRequest createOptimalCreditRequest(long numberOfMoney, int numberOfMonths, int userCreditRating);
+    CreditRequest createOptimalCreditRequest(long numberOfMoney, int numberOfMonths, int userCreditRating, Long userId);
     CreditAccount getCredit(CreditRequest request) throws WrongRequestException, CreditRatingException, WrongIdentifierHandlingException;
 
     void transferAccounts(ArrayList<PaymentAccount> paymentAccounts, Long bankId) throws WrongIdentifierHandlingException;

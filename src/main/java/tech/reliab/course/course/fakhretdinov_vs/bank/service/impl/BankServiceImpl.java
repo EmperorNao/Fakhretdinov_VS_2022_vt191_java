@@ -242,14 +242,14 @@ public class BankServiceImpl implements BankService {
     }
 
     @Override
-    public CreditRequest createOptimalCreditRequest(long numberOfMoney, int numberOfMonths, int userCreditRating) {
+    public CreditRequest createOptimalCreditRequest(long numberOfMoney, int numberOfMonths, int userCreditRating, Long userId) {
 
         CreditRequest emptyRequest = new CreditRequest(
                 null,
                 null,
                 null,
                 null,
-                null,
+                userId,
                 numberOfMoney,
                 numberOfMonths,
                 userCreditRating
