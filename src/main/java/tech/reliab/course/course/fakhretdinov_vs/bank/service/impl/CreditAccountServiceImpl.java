@@ -28,7 +28,7 @@ public class CreditAccountServiceImpl implements CreditAccountService {
                                 PaymentAccount paymentAccount) {
 
         int duration = (int)ChronoUnit.MONTHS.between(creditStart, creditEnd);
-        long monthlyPayment = numberOfMoney / duration;
+        long monthlyPayment = (long) Math.floor((1.0 + bank.getInterestRate()) * numberOfMoney / duration);
         CreditAccount creditAccount = new CreditAccount(
                 currentMaxId++,
                 user.getId(),
